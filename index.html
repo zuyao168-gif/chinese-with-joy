@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chinese with Joy — Learn Chinese you'll actually use</title>
+<meta name="description" content="1-on-1 Mandarin lessons with Joy (雨洁) — certified teacher from Nanjing, Chinese Language & Literature degree, and the recorded voice of the China Survival Kit app.">
+<style>
+/* ============================================================
+   INK & JADE — The Character Study
+   Nine tiles; the band change is the only divider.
+   One accent. One shadow (the phone). Three watermark hanzi.
+   One bubble. Two seals. Fixed numbers, enforced here.
+   ============================================================ */
+:root{
+  --ink:#1D1D1F; --graphite:#6E6E73; --paper:#FFFFFF; --rice:#F5F5F7;
+  --jade:#0E7B5C; --jade-press:#0C6A4F; --jade-lift:#4BC49A;
+  --dark:#0C1512; --whisper:#E9F4EF; --hairline:#D2D2D7;
+  --cinnabar:#B23A2E;
+  --wm-light:rgba(29,29,31,.05); --wm-dark:rgba(255,255,255,.06);
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --zh-serif:'Songti SC','Noto Serif SC',STSong,SimSun,serif;
+  --zh-sans:'PingFang SC','Hiragino Sans GB','Noto Sans SC','Microsoft YaHei',sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.47;-webkit-font-smoothing:antialiased;overflow-x:clip}
+section{position:relative;overflow:clip;padding:80px 0} /* the tile crops its watermark like a doorway crops sculpture */
+.container{max-width:980px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+a{color:var(--jade)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:none;border-color:var(--jade);box-shadow:0 0 0 3px rgba(14,123,92,.22)}
+img{max-width:100%;display:block}
+
+/* type */
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--jade);margin-bottom:16px}
+.dark .eyebrow{color:var(--jade-lift)}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(38px,7.5vw,64px);line-height:1.08;letter-spacing:-.012em;text-wrap:balance}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);line-height:1.1;letter-spacing:-.01em;margin-bottom:20px;text-wrap:balance}
+.sub{color:var(--graphite);max-width:480px;margin:20px 0 32px}
+.prose{max-width:640px}
+.caption{font-size:14px;line-height:1.4;color:var(--graphite)}
+
+/* buttons — jade pills; :active = the stamp press */
+.btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;
+  border-radius:999px;border:none;font-family:var(--sans);font-size:17px;font-weight:600;
+  text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn-jade{background:var(--jade);color:#fff}
+.btn-jade:active{background:var(--jade-press);transform:translateY(1px)}
+.btn-ghost-dark{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55)}
+.btn-ghost-dark:active{transform:translateY(1px)}
+.textlink{font-weight:600;text-decoration:none}
+.textlink:hover{text-decoration:underline}
+
+/* watermark hanzi — decorative, ≤6% ink, below all text */
+.wm{position:absolute;font-family:var(--zh-serif);font-weight:400;line-height:1;
+  color:var(--wm-light);z-index:0;pointer-events:none;user-select:none}
+.dark .wm{color:var(--wm-dark)}
+
+/* dark tiles */
+.dark{background:var(--dark);color:#fff}
+.dark p{color:rgba(245,245,247,.8)}
+.rice{background:var(--rice)}
+
+/* ---- 1 · HERO ---- */
+.hero{padding:88px 0 80px}
+.hero-grid{display:grid;grid-template-columns:7fr 5fr;gap:48px;align-items:center}
+.hero .btnrow{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.photo{position:relative;border-radius:20px;overflow:visible}
+.photo img{width:100%;border-radius:20px;aspect-ratio:1/1;object-fit:cover}
+.photo.tall img{aspect-ratio:4/5}
+/* REPLACE-PHOTO: drop joy.jpg (close-up) and joy-travel.jpg (full-body) into this
+   folder — the images mount automatically. Until then a composed fallback shows. */
+.photo .fallback{display:none}
+.photo.nophoto img{display:none}
+.photo.nophoto .fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;aspect-ratio:1/1;border-radius:20px;background:var(--whisper)}
+.photo.tall.nophoto .fallback{aspect-ratio:4/5}
+.photo .fallback .zi{font-family:var(--zh-serif);font-size:64px;color:var(--jade);opacity:.45}
+.photo .fallback small{font-size:12px;color:var(--graphite)}
+.wm-rain{top:-60px;right:-70px;font-size:400px}
+/* the handshake bubble — appears exactly once */
+.bubble{position:absolute;left:-24px;bottom:32px;background:var(--paper);border:1px solid var(--hairline);
+  border-radius:999px;border-bottom-left-radius:8px;padding:12px 22px;
+  font-family:var(--zh-sans);font-weight:500;font-size:20px;line-height:1.3;color:var(--ink);
+  opacity:0;transform:translateY(8px);animation:bubbleIn .4s ease .3s forwards;white-space:nowrap}
+.bubble small{font-family:var(--sans);font-weight:400;font-size:15px;color:var(--graphite)}
+@keyframes bubbleIn{to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.bubble{animation:none;opacity:1;transform:none}}
+
+/* ---- 2 · TRUST ---- */
+.trust{padding:56px 0}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.trust-grid b{display:block;font-size:17px;font-weight:600;margin-bottom:4px}
+
+/* ---- 3 · METHOD 勇用趣 ---- */
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:44px}
+.glyph{font-family:var(--zh-serif);font-size:96px;line-height:1;color:var(--ink)}
+.method-grid .py{font-size:14px;color:var(--graphite);margin:8px 0 0}
+.method-grid .rule{width:24px;height:2px;background:var(--jade);margin:16px 0}
+.method-grid h3{font-size:22px;font-weight:600;line-height:1.3;margin-bottom:8px}
+.method-grid p{color:var(--graphite);font-size:16px}
+
+/* ---- 4 · REVIEWS ---- */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.rev{background:var(--paper);border-radius:14px;padding:32px}
+.rev .qm{font-family:var(--serif);font-size:40px;line-height:.6;color:var(--jade);display:block;margin-bottom:14px}
+.rev p{font-size:16px;line-height:1.55}
+.rev footer{margin-top:16px;font-size:14px}
+.rev footer b{font-weight:600}
+.rev footer span{color:var(--graphite)}
+/* all six reviews are direct grid children (3x2 on desktop); the "show more"
+   button and collapse apply on mobile only, via a class — never display:contents
+   on a <details>, which browsers dissolve into a grid unreliably. */
+.rev-more{display:none;grid-column:1/-1;justify-self:start;background:none;border:none;
+  font-family:var(--sans);color:var(--jade);font-weight:600;font-size:16px;cursor:pointer;padding:8px 0}
+.rev-more:hover{text-decoration:underline}
+
+/* ---- 5 · APP (dark tile 1) ---- */
+.app-grid{display:grid;grid-template-columns:7fr 5fr;gap:48px;align-items:center}
+.wm-speak{top:-80px;right:-40px;font-size:400px}
+.phone{width:280px;margin:0 auto;background:var(--dark);border:1px solid rgba(255,255,255,.14);
+  border-radius:32px;padding:14px;box-shadow:0 32px 64px rgba(0,0,0,.4)} /* the site's ONLY shadow */
+.phone .screen{background:#14231C;border-radius:20px;padding:36px 18px 28px;text-align:center}
+.phone .p-en{font-size:12px;color:rgba(255,255,255,.55)}
+.phone .p-zh{font-family:var(--zh-sans);font-size:24px;font-weight:500;color:#fff;margin:8px 0 4px}
+.phone .p-py{font-size:12px;color:var(--jade-lift)}
+.phone .chips{display:flex;gap:8px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.phone .chip{font-family:var(--zh-sans);font-size:15px;font-weight:600;color:#fff;
+  background:rgba(255,255,255,.10);border-radius:999px;padding:9px 14px}
+.phone .chip small{display:block;font-family:var(--sans);font-weight:400;font-size:9px;color:rgba(255,255,255,.55)}
+.phone .chip.on{background:var(--jade)}
+.phone .chip.on small{color:rgba(255,255,255,.8)}
+.applist{list-style:none;padding:0;margin:24px 0 32px}
+.applist li{position:relative;padding-left:28px;margin:12px 0;color:rgba(245,245,247,.8)}
+.applist li::before{content:"✓";position:absolute;left:0;color:var(--jade-lift);font-weight:600}
+.store-badge{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border:1px solid rgba(255,255,255,.55);
+  border-radius:999px;color:#fff;text-decoration:none;font-size:16px;font-weight:600}
+.store-badge:active{transform:translateY(1px)}
+
+/* ---- 6 · EMAIL ---- */
+.inset{background:var(--paper);border-radius:20px;padding:40px;max-width:640px}
+.inset h2{font-size:32px}
+.inset form{display:flex;gap:12px;margin:24px 0 12px}
+.inset input{flex:1;height:48px;border:1px solid var(--hairline);border-radius:8px;padding:0 16px;
+  font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--paper);min-width:0}
+
+/* ---- 7 · ABOUT ---- */
+.about-grid{display:grid;grid-template-columns:5fr 7fr;gap:48px;align-items:start}
+.quote-zh{font-family:var(--zh-serif);font-size:32px;line-height:1.4;margin:28px 0 8px}
+.quote-en{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--graphite)}
+.sealrow{display:flex;justify-content:flex-end;margin-top:20px}
+/* the seal — exactly two appearances sitewide */
+.seal{width:48px;height:48px;background:var(--cinnabar);border-radius:7px;transform:rotate(-3deg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none}
+.seal span{font-family:var(--zh-serif);font-size:17px;line-height:1.15;color:#fff}
+.seal.sm{width:28px;height:28px;transform:none;border-radius:5px}
+.seal.sm span{font-size:10px;line-height:1.1}
+
+/* ---- 8 · FINAL CTA (dark tile 2) ---- */
+.final{padding:120px 0;text-align:center}
+.wm-brave{top:-100px;left:50%;transform:translateX(-50%);font-size:480px}
+.final .btnrow{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+
+/* ---- 9 · FOOTER ---- */
+.foot{padding:48px 0 56px}
+.foot .row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.foot .brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:17px}
+.foot nav{display:flex;gap:24px;flex-wrap:wrap}
+.foot a{color:var(--graphite);text-decoration:none;font-size:14px}
+.foot a:hover{color:var(--jade)}
+.foot .made{font-size:14px;color:var(--graphite)}
+
+/* ---- sticky mobile booking bar ---- */
+.stickybar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;
+  background:var(--paper);border-top:1px solid var(--hairline);
+  padding:8px 16px calc(8px + env(safe-area-inset-bottom));
+  align-items:center;justify-content:space-between;gap:12px}
+.stickybar .note{font-size:13px;color:var(--graphite)}
+.stickybar .btn{height:40px;padding:0 20px;font-size:15px}
+
+/* ---- responsive ---- */
+@media(max-width:1023px){
+  .hero-grid,.app-grid,.about-grid{grid-template-columns:1fr;gap:40px}
+  .about-grid .photo{max-width:420px}
+}
+@media(max-width:640px){
+  section{padding:56px 0}
+  .container{padding:0 16px}
+  .hero{padding:48px 0 56px}
+  .hero-grid{gap:28px}
+  .hero .photo{order:2}
+  .wm-rain{font-size:200px;top:-40px;right:-50px}
+  .wm-speak{font-size:200px;top:-50px;right:-50px}
+  .wm-brave{font-size:220px;top:-60px}
+  .bubble{left:16px;bottom:auto;top:-18px;font-size:17px;padding:10px 18px}
+  .bubble small{font-size:13px}
+  .trust{padding:40px 0}
+  .trust-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .method-grid{grid-template-columns:1fr;gap:36px}
+  .rev-grid{grid-template-columns:1fr}
+  .rev-grid.collapsed .rev-extra{display:none}
+  .rev-grid.collapsed .rev-more{display:block}
+  .inset{padding:24px}
+  .inset form{flex-direction:column}
+  .inset .btn{width:100%}
+  .final{padding:88px 0}
+  .stickybar.on{display:flex}
+}
+</style>
+</head>
+<body>
+
+<!-- 1 · HERO — white -->
+<section class="hero">
+  <span class="wm wm-rain" aria-hidden="true">雨</span>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">1-on-1 Mandarin · Nanjing, China</div>
+        <h1>Learn Chinese you'll actually use — without the fear of speaking.</h1>
+        <p class="sub">I'm Joy — certified teacher, Chinese Literature degree, and the voice inside the China Survival Kit app. My students order dinner, survive taxis and close deals in Chinese.</p>
+        <div class="btnrow">
+          <a class="btn btn-jade" id="heroCta" href="https://preply.com/en/tutor/7785901" target="_blank" rel="noopener">Book a trial lesson</a>
+          <a class="textlink" href="#cheatsheet">Get the free cheat-sheet →</a>
+        </div>
+      </div>
+      <div class="photo" id="ph1">
+        <img src="joy.jpg" alt="Joy — Mandarin teacher" onerror="document.getElementById('ph1').classList.add('nophoto')">
+        <div class="fallback"><span class="zi">雨洁</span><small>photo: joy.jpg</small></div>
+        <div class="bubble">你好，我是雨洁 <small>— Hi, I'm Joy.</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · TRUST — rice -->
+<section class="trust rice">
+  <div class="container">
+    <div class="trust-grid">
+      <div><b>Chinese Lit degree</b><span class="caption">language structure is her craft, not guesswork</span></div>
+      <div><b>Certified · 普通话 cert</b><span class="caption">teaching qualification + Mandarin proficiency</span></div>
+      <div><b>2+ years, 1-on-1 only</b><span class="caption">from first nǐ hǎo to business Chinese</span></div>
+      <div><b>Learns 2 languages herself</b><span class="caption">Japanese &amp; Indonesian — she knows how it feels</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · METHOD — white -->
+<section>
+  <div class="container">
+    <div class="eyebrow">How Joy teaches</div>
+    <h2>A lesson built around you — not a textbook.</h2>
+    <div class="method-grid">
+      <div>
+        <div class="glyph" lang="zh">勇</div>
+        <p class="py">yǒng</p>
+        <div class="rule"></div>
+        <h3>Courage</h3>
+        <p>The hardest part of Chinese isn't tones — it's daring to open your mouth. Lessons are a safe room to try, stumble, and be celebrated for every small win.</p>
+      </div>
+      <div>
+        <div class="glyph" lang="zh">用</div>
+        <p class="py">yòng</p>
+        <div class="rule"></div>
+        <h3>Use</h3>
+        <p>Real-life Chinese from day one: ordering, taxis, work meetings, exam prep — the material is tailored to your exact goals and level.</p>
+      </div>
+      <div>
+        <div class="glyph" lang="zh">趣</div>
+        <p class="py">qù</p>
+        <div class="rule"></div>
+        <h3>Delight</h3>
+        <p>Clear plans, visual materials, audio for every scenario — with room to chase whatever came up in your week. Students say time flies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · REVIEWS — rice -->
+<section class="rice">
+  <div class="container">
+    <div class="eyebrow">Student reviews</div>
+    <h2>What students say after class</h2>
+    <div class="rev-grid" id="revGrid">
+      <article class="rev"><span class="qm">“</span><p>In a lifetime of language classes, lessons with Yujie are honestly the most engaging, fun — and equally challenging and productive — I've ever had. Time flies.</p><footer><b>Benjamin</b> <span>· long-term student</span></footer></article>
+      <article class="rev"><span class="qm">“</span><p>When I asked her to tailor lessons to my specific needs — translating legal terminology for work — she did it brilliantly. I couldn't recommend her more highly.</p><footer><b>Hannah</b> <span>· business Chinese</span></footer></article>
+      <article class="rev"><span class="qm">“</span><p>She created such a warm, encouraging environment that I felt completely comfortable to try, make mistakes and improve fast. Every small win gets celebrated.</p><footer><b>Thomas</b> <span>· beginner</span></footer></article>
+      <article class="rev rev-extra"><span class="qm">“</span><p>Always incredibly well prepared, with lots of visual materials and audio clips for different scenarios. Her lessons made my learning genuinely fun.</p><footer><b>Meg</b> <span>· six lessons in</span></footer></article>
+      <article class="rev rev-extra"><span class="qm">“</span><p>She personalizes every single lesson to your goals, level and interests. Direct, efficient, and patient — I absolutely recommend her.</p><footer><b>Marco</b> <span>· efficiency-minded</span></footer></article>
+      <article class="rev rev-extra"><span class="qm">“</span><p>She breaks the nuances of Chinese into easy, digestible pieces and lets you learn at your own pace. Exactly what you want in a language teacher.</p><footer><b>Steven</b> <span>· steady pace</span></footer></article>
+      <button class="rev-more" id="revMore" type="button">Read 3 more from students →</button>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · APP — dark tile 1 -->
+<section class="dark">
+  <span class="wm wm-speak" aria-hidden="true">说</span>
+  <div class="container">
+    <div class="app-grid">
+      <div>
+        <div class="eyebrow">Her voice, in your pocket</div>
+        <h2>The China Survival Kit — 234 phrases, recorded by Joy.</h2>
+        <p>Going to China before you're fluent? Show your phone; locals tap the answer back. Every phrase plays in Joy's own voice.</p>
+        <ul class="applist">
+          <li>Real human voice — not a robot</li>
+          <li>Works 100% offline, the moment you land</li>
+          <li>Emergency essentials free, forever</li>
+        </ul>
+        <a class="store-badge" href="https://apps.apple.com/app/china-survival-kit/id6785204473" target="_blank" rel="noopener">Download on the App Store</a>
+      </div>
+      <div>
+        <div class="phone" aria-hidden="true">
+          <div class="screen">
+            <div class="p-en">Do you speak English?</div>
+            <div class="p-zh" lang="zh">你会说英语吗？</div>
+            <div class="p-py">Nǐ huì shuō Yīngyǔ ma?</div>
+            <div class="chips">
+              <span class="chip" lang="zh">会<small>Yes</small></span>
+              <span class="chip on" lang="zh">会一点<small>A little</small></span>
+              <span class="chip" lang="zh">不会<small>No</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · EMAIL — rice -->
+<section class="rice" id="cheatsheet">
+  <div class="container">
+    <div class="inset">
+      <div class="eyebrow">Free download</div>
+      <h2>The 30 phrases that will save your China trip.</h2>
+      <p class="caption">Big Chinese, pinyin, and when to use each one — straight from the app, free in your inbox.</p>
+      <!-- REPLACE-FORM: paste the MailerLite embed here and delete this placeholder form -->
+      <form action="#" data-todo="mailerlite-embed" onsubmit="return false">
+        <input type="email" placeholder="your@email.com" aria-label="Email address" required>
+        <button class="btn btn-jade" type="submit">Send me the phrases</button>
+      </form>
+      <p class="caption">No spam — the cheat-sheet and an occasional tip from Joy. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · ABOUT — white -->
+<section>
+  <div class="container">
+    <div class="about-grid">
+      <div class="photo tall" id="ph2">
+        <img src="joy-travel.jpg" alt="Joy travelling in Indonesia" onerror="document.getElementById('ph2').classList.add('nophoto')">
+        <div class="fallback"><span class="zi">南京</span><small>photo: joy-travel.jpg</small></div>
+      </div>
+      <div class="prose">
+        <div class="eyebrow">你好, I'm Joy — 雨洁</div>
+        <h2>From Nanjing, with patience.</h2>
+        <p>Joy grew up in Nanjing — one of China's great historic capitals — and studied Chinese Language &amp; Literature at university, earning her teaching qualification and Mandarin proficiency certificate along the way. Language structure isn't guesswork for her; it's her craft.</p>
+        <p style="margin-top:14px">She's a language learner herself — Japanese, and now Indonesian — so she knows exactly what it feels like to be afraid to speak, to not understand, to feel stuck. That's why her classroom runs on encouragement and real expression, not red ink.</p>
+        <p class="quote-zh" lang="zh">文字本身，就像一种有魔力的表达方式。</p>
+        <p class="quote-en">"Characters themselves are like a magical way of expressing things."</p>
+        <div class="sealrow"><div class="seal" role="img" aria-label="Joy's seal — 雨洁"><span lang="zh">雨</span><span lang="zh">洁</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · FINAL CTA — dark tile 2 -->
+<section class="dark final" id="finalCta">
+  <span class="wm wm-brave" aria-hidden="true">勇</span>
+  <div class="container">
+    <h2>Your first word is the hardest.<br>Say it with me.</h2>
+    <div class="btnrow">
+      <a class="btn btn-jade" href="https://preply.com/en/tutor/7785901" target="_blank" rel="noopener">Book your trial on Preply</a>
+      <a class="btn btn-ghost-dark" href="https://apps.apple.com/app/china-survival-kit/id6785204473" target="_blank" rel="noopener">Download the app</a>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · FOOTER — white -->
+<footer class="foot">
+  <div class="container">
+    <div class="row">
+      <div class="brand">Chinese with Joy <div class="seal sm" role="img" aria-label="雨洁"><span lang="zh">雨</span><span lang="zh">洁</span></div></div>
+      <nav>
+        <a href="https://preply.com/en/tutor/7785901" target="_blank" rel="noopener">Preply</a>
+        <a href="https://www.tiktok.com/@learnchinesewithjoy" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.instagram.com/learnmandarinwithjoy/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@LearnChineseWithJoy" target="_blank" rel="noopener">YouTube</a>
+        <a href="#cheatsheet">Cheat-sheet</a>
+      </nav>
+      <span class="made">Made in Nanjing <span lang="zh">南京</span></span>
+    </div>
+  </div>
+</footer>
+
+<!-- sticky mobile booking bar -->
+<div class="stickybar" id="stickybar">
+  <span class="note">25-min trial · no prep needed</span>
+  <a class="btn btn-jade" href="https://preply.com/en/tutor/7785901" target="_blank" rel="noopener">Book a trial</a>
+</div>
+
+<script>
+(function(){
+  /* reviews: always expanded on desktop, collapsible on mobile */
+  var revGrid=document.getElementById('revGrid'), revMore=document.getElementById('revMore'),
+      revMq=matchMedia('(max-width:640px)');
+  function revSync(){ revGrid.classList.toggle('collapsed', revMq.matches); }
+  revSync(); revMq.addEventListener ? revMq.addEventListener('change',revSync) : revMq.addListener(revSync);
+  revMore.addEventListener('click', function(){ revGrid.classList.remove('collapsed'); });
+
+  /* sticky bar: show after hero CTA leaves view; hide over final CTA + footer */
+  var bar=document.getElementById('stickybar'), hero=document.getElementById('heroCta'),
+      fin=document.getElementById('finalCta'), foot=document.querySelector('.foot');
+  if('IntersectionObserver' in window){
+    var pastHero=false, overEnd=false;
+    function upd(){ bar.classList.toggle('on', pastHero && !overEnd); }
+    new IntersectionObserver(function(e){ pastHero=!e[0].isIntersecting; upd(); }).observe(hero);
+    var endObs=new IntersectionObserver(function(es){
+      overEnd=es.some(function(x){return x.isIntersecting});
+      // two targets share one observer: track both states
+      var states={}; endObs._s=endObs._s||{};
+      es.forEach(function(x){ endObs._s[x.target.id||'foot']=x.isIntersecting; });
+      overEnd=Object.keys(endObs._s).some(function(k){return endObs._s[k]});
+      upd();
+    });
+    endObs.observe(fin); endObs.observe(foot);
+  }
+})();
+</script>
+</body>
+</html>
