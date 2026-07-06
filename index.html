@@ -156,6 +156,10 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
 .inset{background:var(--paper);border-radius:20px;padding:40px;max-width:640px}
 .inset h2{font-size:32px}
 .inset form{display:flex;gap:12px;margin:24px 0 12px}
+.inset .ml-block-form{display:flex;gap:12px;margin:24px 0 12px}
+.inset .ml-form-formContent{flex:1;min-width:0}
+.inset .ml-form-embedSubmit{flex:none}
+.inset .ml-success{color:var(--jade);font-weight:600;margin:24px 0 12px}
 .inset input{flex:1;height:48px;border:1px solid var(--hairline);border-radius:8px;padding:0 16px;
   font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--paper);min-width:0}
 
@@ -217,6 +221,8 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
   .rev-grid.collapsed .rev-more{display:block}
   .inset{padding:24px}
   .inset form{flex-direction:column}
+  .inset .ml-block-form{flex-direction:column}
+  .inset .ml-form-embedSubmit .btn{width:100%}
   .inset .btn{width:100%}
   .final{padding:88px 0}
   .stickybar.on{display:flex}
@@ -351,10 +357,40 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
       <h2>The 30 phrases that will save your China trip.</h2>
       <p class="caption">Big Chinese, pinyin, and when to use each one — straight from the app, free in your inbox.</p>
       <!-- REPLACE-FORM: paste the MailerLite embed here and delete this placeholder form -->
-      <form action="#" data-todo="mailerlite-embed" onsubmit="return false">
-        <input type="email" placeholder="your@email.com" aria-label="Email address" required>
-        <button class="btn btn-jade" type="submit">Send me the phrases</button>
-      </form>
+      <!-- MailerLite form 43439270, restyled: ML's JS handles submit/validation/success;
+           our classes handle every pixel. Do not rename ml-* classes — the script needs them. -->
+      <div id="mlb2-43439270" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-43439270">
+        <div class="ml-form-embedWrapper embedForm">
+          <div class="ml-form-embedBody row-form">
+            <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2493268/forms/192261687065183254/subscribe" data-code="" method="post" target="_blank">
+              <div class="ml-form-formContent">
+                <div class="ml-form-fieldRow ml-last-item">
+                  <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                    <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="your@email.com" autocomplete="email">
+                  </div>
+                </div>
+              </div>
+              <input type="hidden" name="ml-submit" value="1">
+              <div class="ml-form-embedSubmit">
+                <button type="submit" class="primary btn btn-jade">Send me the phrases</button>
+                <button disabled style="display:none" type="button" class="loading btn btn-jade">Sending…</button>
+              </div>
+              <input type="hidden" name="anticsrf" value="true">
+            </form>
+          </div>
+          <div class="ml-form-successBody row-success" style="display:none">
+            <p class="ml-success">✓ Check your inbox — the guide is on its way! 📬</p>
+          </div>
+        </div>
+      </div>
+      <script>
+        function ml_webform_success_43439270(){
+          var w=document.querySelector('.ml-subscribe-form-43439270');
+          w.querySelector('.row-success').style.display='block';
+          w.querySelector('.row-form').style.display='none';
+        }
+      </script>
+      <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" async></script>
       <p class="caption" style="margin-top:10px">Can't wait? <a href="guide.html">Read the full guide online now →</a></p>
       <p class="caption">No spam — the cheat-sheet and an occasional tip from Joy. Unsubscribe anytime.</p>
     </div>
