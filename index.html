@@ -88,7 +88,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
 .hero-grid{display:grid;grid-template-columns:7fr 5fr;gap:48px;align-items:center}
 .hero .btnrow{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
 .photo{position:relative;border-radius:20px;overflow:visible}
-.photo img{width:100%;border-radius:20px;aspect-ratio:1/1;object-fit:cover}
+.photo img{width:100%;height:auto;border-radius:20px;aspect-ratio:1/1;object-fit:cover}
 .photo.tall img{aspect-ratio:4/5}
 /* REPLACE-PHOTO: drop joy.jpg (close-up) and joy-travel.jpg (full-body) into this
    folder — the images mount automatically. Until then a composed fallback shows. */
@@ -246,7 +246,9 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
 .tailin{width:180px;text-align:center;font-family:var(--serif);font-size:34px;letter-spacing:.28em;
   border:none;border-bottom:2px solid var(--hairline);background:transparent;color:var(--ink);padding:2px 0 6px;outline:none}
 .tailin:focus{border-color:var(--jade)}
-.tail-digits{font-family:var(--serif);font-size:clamp(56px,9vw,80px);letter-spacing:.1em;line-height:1;margin-top:26px;font-variant-numeric:tabular-nums}
+.tail-intro{margin-top:24px;font-family:var(--zh-sans);font-weight:600;font-size:16.5px;color:var(--ink)}
+.tail-intro small{display:block;font-family:var(--sans);font-weight:400;font-size:12px;color:var(--graphite);margin-top:3px}
+.tail-digits{font-family:var(--serif);font-size:clamp(56px,9vw,80px);letter-spacing:.1em;line-height:1;margin-top:14px;font-variant-numeric:tabular-nums}
 .tail-zh{font-family:var(--zh-sans);font-weight:600;font-size:25px;color:var(--jade);margin-top:12px}
 .tail-py{font-size:14px;color:var(--graphite);margin-top:4px}
 .tailplay{margin-top:24px}
@@ -269,7 +271,8 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
   .container{padding:0 16px}
   .hero{padding:48px 0 56px}
   .hero-grid{gap:28px}
-  .hero .photo{order:2}
+  .hero .photo{order:2;max-width:300px;margin:0 auto;width:100%}
+  .about-grid .photo{max-width:280px;margin:0 auto;width:100%}
   .wm-rain{font-size:200px;top:-40px;right:-50px}
   .wm-speak{font-size:200px;top:-50px;right:-50px}
   .wm-brave{font-size:220px;top:-60px}
@@ -385,9 +388,10 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
       <div class="tailcard">
         <label for="tailIn">Last 4 digits of your number</label>
         <input class="tailin" id="tailIn" inputmode="numeric" autocomplete="off" value="6472" aria-describedby="tailZh">
+        <div class="tail-intro"><span lang="zh">我是您接的乘客，手机尾号是</span><small>I'm the passenger you're picking up — my number ends in:</small></div>
         <div class="tail-digits" id="tailDigits">6&thinsp;4&thinsp;7&thinsp;2</div>
-        <div class="tail-zh" id="tailZh" lang="zh">尾号 六四七二</div>
-        <div class="tail-py" id="tailPy">wěihào liù sì qī èr</div>
+        <div class="tail-zh" id="tailZh" lang="zh">六四七二</div>
+        <div class="tail-py" id="tailPy">liù sì qī èr</div>
         <button class="btn btn-jade tailplay" id="tailPlay" type="button">▶&nbsp; Hear it in Joy's voice</button>
       </div>
     </div>
@@ -634,16 +638,47 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
       var d=d4(), v=d||'6472';
       if(tin.value!==d)tin.value=d; /* normalize to digits — but never force the fallback into the field */
       td.innerHTML=v.split('').join('&thinsp;');
-      tz.textContent='尾号 '+v.split('').map(function(n){return TCN[+n];}).join('');
-      tp.textContent='wěihào '+v.split('').map(function(n){return TPY[+n];}).join(' ');
+      tz.textContent=v.split('').map(function(n){return TCN[+n];}).join('');
+      tp.textContent=v.split('').map(function(n){return TPY[+n];}).join(' ');
     }
     tin.addEventListener('input',sync);
+    /* Seamless playback: decode all clips once, trim the silence padding off
+       each, and schedule them back-to-back with Web Audio — no network gaps,
+       no dead air between 尾号是 and the digits. Falls back to the simple
+       chained player if decoding isn't available. */
+    var tctx=null,tbufs={},tsrcs=[];
+    function ttrim(buf){
+      var d=buf.getChannelData(0),th=0.012,i=0,j=d.length-1,sr=buf.sampleRate;
+      while(i<j&&Math.abs(d[i])<th)i++;
+      while(j>i&&Math.abs(d[j])<th)j--;
+      return {start:Math.max(0,i/sr-0.03), end:Math.min(buf.duration,j/sr+0.05)};
+    }
+    function tfetch(id){
+      if(tbufs[id])return Promise.resolve(tbufs[id]);
+      return fetch('audio/'+id+'.m4a').then(function(r){if(!r.ok)throw 0;return r.arrayBuffer();})
+        .then(function(ab){return tctx.decodeAudioData(ab);})
+        .then(function(b){tbufs[id]=b;return b;});
+    }
     tb.addEventListener('click',function(){
-      var v=d4()||'6472', ids=['tnintro'].concat(v.split('').map(function(n){return 'tnd'+n;})), i=0;
-      (function next(){
-        if(i>=ids.length)return;
-        playClip('audio/'+ids[i++]+'.m4a',tb,next);
-      })();
+      var v=d4()||'6472', ids=['tnintro'].concat(v.split('').map(function(n){return 'tnd'+n;}));
+      stopA(); tsrcs.forEach(function(s){try{s.stop();}catch(e){}}); tsrcs=[];
+      var AC=window.AudioContext||window.webkitAudioContext;
+      if(!AC){ var i=0;(function next(){ if(i>=ids.length)return; playClip('audio/'+ids[i++]+'.m4a',tb,next); })(); return; }
+      tctx=tctx||new AC(); tctx.resume();
+      Promise.all(ids.map(tfetch)).then(function(bufs){
+        var t=tctx.currentTime+0.06;
+        bufs.forEach(function(buf,i){
+          var b=ttrim(buf), src=tctx.createBufferSource();
+          src.buffer=buf; src.connect(tctx.destination);
+          src.start(t, b.start, b.end-b.start);
+          tsrcs.push(src);
+          t+=(b.end-b.start)+(i===0?0.18:0.09); /* small beat after the intro, tight between digits */
+        });
+        tb.classList.add('on');
+        setTimeout(function(){tb.classList.remove('on');},Math.max(0,(t-tctx.currentTime)*1000));
+      }).catch(function(){
+        var i=0;(function next(){ if(i>=ids.length)return; playClip('audio/'+ids[i++]+'.m4a',tb,next); })();
+      });
     });
     sync();
   }
