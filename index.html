@@ -254,6 +254,15 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
 .tail-py{font-size:14px;color:var(--graphite);margin-top:4px}
 .tailplay{margin-top:24px}
 
+/* ---- travel guides grid ---- */
+.gwrap{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.gwrap .textlink{white-space:nowrap}
+.ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gcard{display:block;background:var(--paper);border:1px solid var(--hairline);border-radius:14px;padding:20px;text-decoration:none;transition:border-color .15s}
+.gcard:hover{border-color:var(--jade)}
+.gcard .gc-k{font-family:var(--zh-serif);font-size:22px;color:var(--jade);line-height:1;display:block;margin-bottom:12px}
+.gcard .gc-t{display:block;font-size:16px;font-weight:600;color:var(--ink);line-height:1.3}
+
 /* ---- sticky mobile booking bar ---- */
 .stickybar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;
   background:var(--paper);border-top:1px solid var(--hairline);
@@ -290,6 +299,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
   .tailplay{width:100%;max-width:280px;padding:0 12px}
   .demo{max-width:none}
   .demo-log{max-height:260px}
+  .ggrid{grid-template-columns:1fr}
   .inset{padding:24px}
   .inset form{flex-direction:column}
   .inset .ml-block-form{flex-direction:column}
@@ -395,6 +405,27 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
         <div class="tail-py" id="tailPy">liù sì qī èr</div>
         <button class="btn btn-jade tailplay" id="tailPlay" type="button">▶&nbsp; Hear it in Joy's voice</button>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2c · TRAVEL GUIDES — rice -->
+<section class="rice" id="guides">
+  <div class="container">
+    <div class="gwrap">
+      <div>
+        <div class="eyebrow">Before you fly</div>
+        <h2 style="margin-bottom:0">Free guides for every part of your trip</h2>
+      </div>
+      <a class="textlink" href="guides/">See all 12 guides →</a>
+    </div>
+    <div class="ggrid">
+      <a class="gcard" href="guides/didi-taxi-china.html"><span class="gc-k" lang="zh" aria-hidden="true">车</span><span class="gc-t">How to use Didi without speaking a word</span></a>
+      <a class="gcard" href="guides/alipay-wechat-pay-tourists.html"><span class="gc-k" lang="zh" aria-hidden="true">付</span><span class="gc-t">Alipay &amp; WeChat Pay: set up before you fly</span></a>
+      <a class="gcard" href="guides/tourist-scams-china.html"><span class="gc-k" lang="zh" aria-hidden="true">骗</span><span class="gc-t">Tourist scams: six classics, one playbook</span></a>
+      <a class="gcard" href="guides/ordering-food-china.html"><span class="gc-k" lang="zh" aria-hidden="true">食</span><span class="gc-t">Order food without speaking a word</span></a>
+      <a class="gcard" href="guides/airport-arrival-china.html"><span class="gc-k" lang="zh" aria-hidden="true">机</span><span class="gc-t">Your first two hours after landing</span></a>
+      <a class="gcard" href="guides/emergency-numbers-china.html"><span class="gc-k" lang="zh" aria-hidden="true">急</span><span class="gc-t">Emergencies: 120, 110, 119 — and what to say</span></a>
     </div>
   </div>
 </section>
