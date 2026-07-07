@@ -12,6 +12,10 @@
 <meta property="og:url" content="https://chinesewithjoy.net/guide.html">
 <meta property="og:image" content="https://chinesewithjoy.net/joy.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0E7B5C">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"30 Phrases That Will Save Your China Trip","description":"The free survival phrase guide: 30 real-life Mandarin phrases with pinyin and real-voice audio — for taxis, restaurants, payments, hotels and emergencies.","inLanguage":"en","author":{"@type":"Person","name":"Joy (Yujie)","url":"https://chinesewithjoy.net/"},"publisher":{"@type":"Person","name":"Joy (Yujie)"},"mainEntityOfPage":"https://chinesewithjoy.net/guide.html","image":"https://chinesewithjoy.net/joy.jpg"}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230E7B5C'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23fff' font-family='PingFang SC,serif'%3E%E4%B8%AD%3C/text%3E%3C/svg%3E">
 <style>
 :root{--ink:#1D1D1F;--graphite:#6E6E73;--paper:#fff;--rice:#F5F5F7;--jade:#0E7B5C;--jadep:#0C6A4F;
@@ -380,14 +384,16 @@ footer a{color:var(--jade)}
 </div>
 <script>
 (function(){
-  var cur=null,curBtn=null;
+  var cur=null,curBtn=null,cache={};
   document.addEventListener('click',function(e){
     var b=e.target.closest('.play');if(!b)return;
     if(curBtn===b&&cur){cur.pause();cur=null;curBtn.classList.remove('on');curBtn=null;return;}
     if(cur){cur.pause();if(curBtn)curBtn.classList.remove('on');}
-    cur=new Audio(b.dataset.audio);curBtn=b;b.classList.add('on');
-    cur.addEventListener('ended',function(){b.classList.remove('on');cur=null;curBtn=null;});
-    cur.play().catch(function(){b.classList.remove('on');});
+    var a=cache[b.dataset.audio]||(cache[b.dataset.audio]=new Audio(b.dataset.audio));
+    cur=a;curBtn=b;b.classList.add('on');
+    a.onended=function(){if(cur===a){b.classList.remove('on');cur=null;curBtn=null;}};
+    try{a.currentTime=0;}catch(err){}
+    var p=a.play();if(p&&p.catch)p.catch(function(){if(cur===a){b.classList.remove('on');cur=null;curBtn=null;}});
   });
 })();
 </script>

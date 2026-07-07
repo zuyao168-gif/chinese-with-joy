@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0E7B5C">
 <title>Chinese with Joy — China travel phrases in a real teacher's voice</title>
 <meta name="description" content="Going to China with zero Mandarin? Free 30-phrase survival pack, the offline China Survival Kit app voiced by a real teacher, and 1-on-1 lessons with Joy when you want more.">
 <link rel="canonical" href="https://chinesewithjoy.net/">
@@ -619,10 +620,20 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
     if(curBtn===b){stopA();return;}
     playClip(b.dataset.clip,b);
   });
+  /* Audio warming is DEFERRED to browser-idle or first touch — ~18 clips
+     (~400KB) would otherwise download up front on a traveler's mobile data.
+     All warm jobs register here; whichever comes first fires them once. */
+  var _warmFns=[],_warmed=false;
+  function _regWarm(f){_warmFns.push(f);}
+  function warmAudio(){ if(_warmed)return; _warmed=true; _warmFns.forEach(function(f){try{f();}catch(e){}}); }
+  ['pointerdown','keydown'].forEach(function(ev){window.addEventListener(ev,warmAudio,{once:true,passive:true});});
+  if('requestIdleCallback' in window)requestIdleCallback(warmAudio,{timeout:3000});else setTimeout(warmAudio,2500);
   /* preload every clip on the page; a missing file hides its button — no dead buttons */
-  document.querySelectorAll('[data-clip]').forEach(function(b){
-    var a=getClip(b.dataset.clip);
-    a.addEventListener('error',function(){b.style.display='none';},{once:true});
+  _regWarm(function(){
+    document.querySelectorAll('[data-clip]').forEach(function(b){
+      var a=getClip(b.dataset.clip);
+      a.addEventListener('error',function(){b.style.display='none';},{once:true});
+    });
   });
 
   /* ---- live phone demo: they tap a reply, you read it in English ---- */
@@ -659,7 +670,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
        element is "blessed" with a silent play() inside the tap gesture so iOS
        allows the real play() after the async build. Chained fallback + 3.5s
        hang guard for browsers where m4a decoding is unavailable. */
-    var tctx=null,tbufs={},twavs={},tAudio=null,tSeq=0;
+    var tctx=null,tbufs={},tarrs={},twavs={},tAudio=null,tSeq=0;
     var SILENT_WAV='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
     function ttrim(buf){
       var d=buf.getChannelData(0),th=0.012,i=0,j=d.length-1,sr=buf.sampleRate;
@@ -669,8 +680,8 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
     }
     function tfetch(id){
       if(tbufs[id])return Promise.resolve(tbufs[id]);
-      return fetch('audio/'+id+'.m4a').then(function(r){if(!r.ok)throw 0;return r.arrayBuffer();})
-        .then(function(ab){return tctx.decodeAudioData(ab);})
+      var getAB=tarrs[id]?Promise.resolve(tarrs[id]):fetch('audio/'+id+'.m4a').then(function(r){if(!r.ok)throw 0;return r.arrayBuffer();});
+      return getAB.then(function(ab){delete tarrs[id];return tctx.decodeAudioData(ab);})
         .then(function(b){tbufs[id]=b;return b;});
     }
     function twavURL(buf){ /* mono 16-bit PCM wav */
@@ -726,12 +737,14 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
         tchain(ids);
       });
     });
-    /* warm the tail clips early so the first tap doesn't wait on 11 fetches */
-    setTimeout(function(){
-      var AC=window.AudioContext||window.webkitAudioContext;
-      if(!AC)return; tctx=tctx||new AC();
-      ['tnintro','tnd0','tnd1','tnd2','tnd3','tnd4','tnd5','tnd6','tnd7','tnd8','tnd9'].forEach(function(id){tfetch(id).catch(function(){});});
-    },1500);
+    /* warm the tail clips (network only — decode happens on tap, so no
+       AudioContext is created before a user gesture) */
+    _regWarm(function(){
+      ['tnintro','tnd0','tnd1','tnd2','tnd3','tnd4','tnd5','tnd6','tnd7','tnd8','tnd9'].forEach(function(id){
+        fetch('audio/'+id+'.m4a').then(function(r){return r.ok?r.arrayBuffer():null;})
+          .then(function(ab){if(ab&&!tbufs[id])tarrs[id]=ab;}).catch(function(){});
+      });
+    });
     sync();
   }
 
@@ -797,7 +810,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
     document.getElementById('demoRestart').addEventListener('click',function(){dpath=[DEMO.start];demoRender();});
     demoRender();
     /* preload every voiced line in the conversation — tap should speak instantly */
-    Object.keys(DEMO.nodes).forEach(function(k){ var c=DEMO.nodes[k].clip; if(c)getClip(c); });
+    _regWarm(function(){ Object.keys(DEMO.nodes).forEach(function(k){ var c=DEMO.nodes[k].clip; if(c)getClip(c); }); });
   }
 })();
 </script>
