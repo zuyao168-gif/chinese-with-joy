@@ -593,27 +593,36 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
     endObs.observe(fin); endObs.observe(foot);
   }
 
-  /* ---- sound: one player for the whole page — Joy's real recordings ---- */
-  var curA=null,curBtn=null;
+  /* ---- sound: one player for the whole page — Joy's real recordings.
+     Clips are cached per-URL and preloaded, so a tap plays instantly
+     instead of waiting on a fetch. ---- */
+  var curA=null,curBtn=null,_clipCache={};
+  function getClip(src){
+    var a=_clipCache[src];
+    if(!a){ a=new Audio(src); a.preload='auto'; _clipCache[src]=a; }
+    return a;
+  }
   function stopA(){ if(curA){curA.pause();curA=null;} if(curBtn){curBtn.classList.remove('on');curBtn=null;} }
   function playClip(src,btn,onEnd){
     stopA();
-    var a=new Audio(src);curA=a;curBtn=btn||null;if(btn)btn.classList.add('on');
-    a.addEventListener('ended',function(){ if(curA===a){stopA(); if(onEnd)onEnd();} });
+    var a=getClip(src);curA=a;curBtn=btn||null;if(btn)btn.classList.add('on');
+    /* onended (not addEventListener): cached elements are reused, listeners must not stack */
+    a.onended=function(){ if(curA===a){stopA(); if(onEnd)onEnd();} };
+    try{a.currentTime=0;}catch(e){}
     /* pause()ing a clip whose play() is still pending rejects that promise —
        only tear down if WE are still the current clip, or a rapid second tap
        (or a 404 in flight) silences the newly started one. */
-    a.play().catch(function(){ if(curA===a)stopA(); });
+    var p=a.play(); if(p&&p.catch)p.catch(function(){ if(curA===a)stopA(); });
   }
   document.addEventListener('click',function(e){
     var b=e.target.closest('[data-clip]');if(!b)return;
     if(curBtn===b){stopA();return;}
     playClip(b.dataset.clip,b);
   });
-  /* any [data-clip] whose file isn't published yet hides itself — no dead buttons */
+  /* preload every clip on the page; a missing file hides its button — no dead buttons */
   document.querySelectorAll('[data-clip]').forEach(function(b){
-    var p=new Audio(); p.addEventListener('error',function(){b.style.display='none';});
-    p.preload='metadata'; p.src=b.dataset.clip;
+    var a=getClip(b.dataset.clip);
+    a.addEventListener('error',function(){b.style.display='none';},{once:true});
   });
 
   /* ---- live phone demo: they tap a reply, you read it in English ---- */
@@ -642,11 +651,16 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
       tp.textContent=v.split('').map(function(n){return TPY[+n];}).join(' ');
     }
     tin.addEventListener('input',sync);
-    /* Seamless playback: decode all clips once, trim the silence padding off
-       each, and schedule them back-to-back with Web Audio — no network gaps,
-       no dead air between 尾号是 and the digits. Falls back to the simple
-       chained player if decoding isn't available. */
-    var tctx=null,tbufs={},tsrcs=[];
+    /* Seamless playback, take 2. Web Audio OUTPUT is muted by the iPhone
+       ring/silent switch (HTML5 <audio> is not) — so we use Web Audio only to
+       STITCH: decode the clips, trim their silence padding, render the whole
+       sentence into ONE wav offline, then play that through a normal <audio>
+       element — same audio channel as every other clip on the page. The
+       element is "blessed" with a silent play() inside the tap gesture so iOS
+       allows the real play() after the async build. Chained fallback + 3.5s
+       hang guard for browsers where m4a decoding is unavailable. */
+    var tctx=null,tbufs={},twavs={},tAudio=null,tSeq=0;
+    var SILENT_WAV='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
     function ttrim(buf){
       var d=buf.getChannelData(0),th=0.012,i=0,j=d.length-1,sr=buf.sampleRate;
       while(i<j&&Math.abs(d[i])<th)i++;
@@ -659,27 +673,65 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
         .then(function(ab){return tctx.decodeAudioData(ab);})
         .then(function(b){tbufs[id]=b;return b;});
     }
+    function twavURL(buf){ /* mono 16-bit PCM wav */
+      var sr=buf.sampleRate,d=buf.getChannelData(0),n=d.length;
+      var ab=new ArrayBuffer(44+n*2),v=new DataView(ab);
+      function ws(o,s){for(var i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i));}
+      ws(0,'RIFF');v.setUint32(4,36+n*2,true);ws(8,'WAVE');ws(12,'fmt ');
+      v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);
+      v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);
+      ws(36,'data');v.setUint32(40,n*2,true);
+      for(var i=0;i<n;i++){var s=Math.max(-1,Math.min(1,d[i]));v.setInt16(44+i*2,s<0?s*0x8000:s*0x7FFF,true);}
+      return URL.createObjectURL(new Blob([ab],{type:'audio/wav'}));
+    }
+    function tbuild(v,ids){
+      if(twavs[v])return Promise.resolve(twavs[v]);
+      var AC=window.AudioContext||window.webkitAudioContext;
+      var OAC=window.OfflineAudioContext||window.webkitOfflineAudioContext;
+      if(!AC||!OAC)return Promise.reject(0);
+      tctx=tctx||new AC();
+      try{var rp=tctx.resume&&tctx.resume(); if(rp&&rp.catch)rp.catch(function(){});}catch(e){}
+      return Promise.all(ids.map(tfetch)).then(function(bufs){
+        var sr=bufs[0].sampleRate,t=0;
+        var plan=bufs.map(function(buf,i){
+          var b=ttrim(buf),at=t;
+          t+=(b.end-b.start)+(i===0?0.18:0.09); /* small beat after the intro, tight between digits */
+          return {buf:buf,off:b.start,dur:b.end-b.start,at:at};
+        });
+        var off=new OAC(1,Math.ceil((t+0.05)*sr),sr);
+        plan.forEach(function(p){var s=off.createBufferSource();s.buffer=p.buf;s.connect(off.destination);s.start(p.at,p.off,p.dur);});
+        return off.startRendering();
+      }).then(function(rendered){ twavs[v]=twavURL(rendered); return twavs[v]; });
+    }
+    function tchain(ids){
+      var i=0;(function next(){ if(i>=ids.length){tb.classList.remove('on');return;} playClip('audio/'+ids[i++]+'.m4a',tb,next); })();
+    }
     tb.addEventListener('click',function(){
       var v=d4()||'6472', ids=['tnintro'].concat(v.split('').map(function(n){return 'tnd'+n;}));
-      stopA(); tsrcs.forEach(function(s){try{s.stop();}catch(e){}}); tsrcs=[];
-      var AC=window.AudioContext||window.webkitAudioContext;
-      if(!AC){ var i=0;(function next(){ if(i>=ids.length)return; playClip('audio/'+ids[i++]+'.m4a',tb,next); })(); return; }
-      tctx=tctx||new AC(); tctx.resume();
-      Promise.all(ids.map(tfetch)).then(function(bufs){
-        var t=tctx.currentTime+0.06;
-        bufs.forEach(function(buf,i){
-          var b=ttrim(buf), src=tctx.createBufferSource();
-          src.buffer=buf; src.connect(tctx.destination);
-          src.start(t, b.start, b.end-b.start);
-          tsrcs.push(src);
-          t+=(b.end-b.start)+(i===0?0.18:0.09); /* small beat after the intro, tight between digits */
-        });
-        tb.classList.add('on');
-        setTimeout(function(){tb.classList.remove('on');},Math.max(0,(t-tctx.currentTime)*1000));
+      var seq=++tSeq;
+      stopA();
+      if(!tAudio)tAudio=new Audio();
+      /* bless inside the gesture: iOS permits later play() on an element that already played */
+      try{tAudio.pause();tAudio.src=SILENT_WAV;var bp=tAudio.play();if(bp&&bp.catch)bp.catch(function(){});}catch(e){}
+      tb.classList.add('on');
+      var settled=false;
+      var guard=setTimeout(function(){ if(settled||seq!==tSeq)return; settled=true; tchain(ids); },3500);
+      tbuild(v,ids).then(function(url){
+        if(settled||seq!==tSeq)return; settled=true; clearTimeout(guard);
+        tAudio.src=url;
+        tAudio.onended=function(){tb.classList.remove('on');};
+        var p=tAudio.play(); if(p&&p.catch)p.catch(function(){tb.classList.remove('on');});
       }).catch(function(){
-        var i=0;(function next(){ if(i>=ids.length)return; playClip('audio/'+ids[i++]+'.m4a',tb,next); })();
+        if(settled||seq!==tSeq)return; settled=true; clearTimeout(guard);
+        tchain(ids);
       });
     });
+    /* warm the tail clips early so the first tap doesn't wait on 11 fetches */
+    setTimeout(function(){
+      var AC=window.AudioContext||window.webkitAudioContext;
+      if(!AC)return; tctx=tctx||new AC();
+      ['tnintro','tnd0','tnd1','tnd2','tnd3','tnd4','tnd5','tnd6','tnd7','tnd8','tnd9'].forEach(function(id){tfetch(id).catch(function(){});});
+    },1500);
     sync();
   }
 
@@ -744,6 +796,8 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
     });
     document.getElementById('demoRestart').addEventListener('click',function(){dpath=[DEMO.start];demoRender();});
     demoRender();
+    /* preload every voiced line in the conversation — tap should speak instantly */
+    Object.keys(DEMO.nodes).forEach(function(k){ var c=DEMO.nodes[k].clip; if(c)getClip(c); });
   }
 })();
 </script>
