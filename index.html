@@ -3,20 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chinese with Joy — Learn Chinese you'll actually use</title>
-<meta name="description" content="Real-life Mandarin for China travel and daily life — learn with Joy, download the China Survival Kit app, and book 1-on-1 lessons when you need personal help.">
+<title>Chinese with Joy — China travel phrases in a real teacher's voice</title>
+<meta name="description" content="Going to China with zero Mandarin? Free 30-phrase survival pack, the offline China Survival Kit app voiced by a real teacher, and 1-on-1 lessons with Joy when you want more.">
 <link rel="canonical" href="https://chinesewithjoy.net/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230E7B5C'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23fff' font-family='PingFang SC,serif'%3E%E4%B8%AD%3C/text%3E%3C/svg%3E">
 <!-- social share cards — bio links get shared constantly; without these they render as blank boxes -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Chinese with Joy — Learn Chinese you'll actually use">
-<meta property="og:description" content="Real-life Mandarin for China travel. Free phrase guide, the China Survival Kit app (voiced by Joy), and 1-on-1 lessons.">
+<meta property="og:title" content="Chinese with Joy — China travel phrases in a real teacher's voice">
+<meta property="og:description" content="Going to China with zero Mandarin? Free 30-phrase pack, an offline app voiced by a real teacher, and 1-on-1 lessons with Joy.">
 <meta property="og:url" content="https://chinesewithjoy.net/">
 <meta property="og:image" content="https://chinesewithjoy.net/joy.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Chinese with Joy — Learn Chinese you'll actually use">
-<meta name="twitter:description" content="Real-life Mandarin for China travel. Free guide + app, voiced by a real teacher.">
+<meta name="twitter:title" content="Chinese with Joy — China travel phrases in a real teacher's voice">
+<meta name="twitter:description" content="Free 30-phrase pack + an offline app for China travel, voiced by a real Mandarin teacher.">
 <meta name="twitter:image" content="https://chinesewithjoy.net/joy.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Person","name":"Joy (Yujie)","alternateName":"雨洁","jobTitle":"Certified Mandarin Chinese teacher","address":{"@type":"PostalAddress","addressLocality":"Nanjing","addressCountry":"CN"},"url":"https://chinesewithjoy.net/","image":"https://chinesewithjoy.net/joy.jpg","sameAs":["https://preply.com/en/tutor/7785901","https://www.tiktok.com/@learnchinesewithjoy","https://www.instagram.com/learnmandarinwithjoy/","https://www.youtube.com/@LearnChineseWithJoy"]},
+ {"@type":"SoftwareApplication","name":"China Survival Kit","operatingSystem":"iOS","applicationCategory":"TravelApplication","description":"Offline Mandarin phrasebook for China travel — 234 phrases recorded by a real teacher. Emergency essentials free; full kit via in-app purchase.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://apps.apple.com/app/china-survival-kit/id6785204473"}
+]}
+</script>
 <style>
 /* ============================================================
    INK & JADE — The Character Study
@@ -43,7 +49,8 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);
 section{position:relative;overflow:clip;padding:80px 0} /* the tile crops its watermark like a doorway crops sculpture */
 .container{max-width:980px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
 a{color:var(--jade)}
-a:focus-visible,button:focus-visible,input:focus-visible{outline:none;border-color:var(--jade);box-shadow:0 0 0 3px rgba(14,123,92,.22)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--jade);outline-offset:2px;border-color:var(--jade)}
+.dark a:focus-visible,.dark button:focus-visible{outline-color:var(--jade-lift)}
 img{max-width:100%;display:block}
 
 /* type */
@@ -189,6 +196,43 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
 .foot a:hover{color:var(--jade)}
 .foot .made{font-size:14px;color:var(--graphite)}
 
+/* ---- hear-me pills (hero) — the page's first sound ---- */
+.say-row{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 30px}
+.say{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--hairline);background:var(--paper);
+  border-radius:999px;padding:8px 18px 8px 10px;cursor:pointer;font-family:var(--sans);text-align:left}
+.say .tri{width:28px;height:28px;border-radius:50%;background:var(--whisper);color:var(--jade);flex:none;
+  display:flex;align-items:center;justify-content:center}
+.say .tri svg{width:13px;height:13px}
+.say .say-zh{font-family:var(--zh-sans);font-size:17px;font-weight:600;color:var(--ink);display:block;line-height:1.2}
+.say .say-en{font-size:11.5px;color:var(--graphite);display:block;line-height:1.2}
+.say.on{border-color:var(--jade);background:var(--whisper)}
+.say.on .tri{background:var(--jade);color:#fff}
+.say-cap{font-size:13px;color:var(--graphite);margin:0 0 10px}
+
+/* ---- live phone demo (the chips actually work) ---- */
+.phone .p-play{display:inline-flex;align-items:center;gap:7px;margin-bottom:16px;border:1px solid rgba(255,255,255,.3);
+  background:transparent;color:#fff;border-radius:999px;padding:7px 16px;font-family:var(--sans);font-size:12.5px;cursor:pointer}
+.phone .p-play svg{width:13px;height:13px;color:var(--jade-lift)}
+.phone .p-play.on{background:var(--jade);border-color:var(--jade)}
+.phone .chip{border:none;cursor:pointer;font-family:var(--zh-sans)}
+.phone .chip:active{transform:translateY(1px)}
+.phone .p-hint{font-size:11px;color:rgba(255,255,255,.66);margin-top:20px;letter-spacing:.04em;text-transform:uppercase}
+.phone .p-flip{margin-top:16px;font-family:var(--sans);font-size:13px;color:var(--jade-lift);min-height:18px}
+.phone .p-flip b{color:#fff}
+.demo-cap{text-align:center;margin-top:14px;color:rgba(245,245,247,.55);font-size:13px}
+
+/* ---- Didi tail-number toy ---- */
+.tail-grid{display:grid;grid-template-columns:6fr 6fr;gap:48px;align-items:center}
+.tailcard{background:var(--rice);border-radius:20px;padding:40px 32px;text-align:center}
+.tailcard label{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--graphite);margin-bottom:10px}
+.tailin{width:180px;text-align:center;font-family:var(--serif);font-size:34px;letter-spacing:.28em;
+  border:none;border-bottom:2px solid var(--hairline);background:transparent;color:var(--ink);padding:2px 0 6px;outline:none}
+.tailin:focus{border-color:var(--jade)}
+.tail-digits{font-family:var(--serif);font-size:clamp(56px,9vw,80px);letter-spacing:.1em;line-height:1;margin-top:26px;font-variant-numeric:tabular-nums}
+.tail-zh{font-family:var(--zh-sans);font-weight:600;font-size:25px;color:var(--jade);margin-top:12px}
+.tail-py{font-size:14px;color:var(--graphite);margin-top:4px}
+.tailplay{margin-top:24px}
+
 /* ---- sticky mobile booking bar ---- */
 .stickybar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;
   background:var(--paper);border-top:1px solid var(--hairline);
@@ -219,6 +263,11 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
   .rev-grid{grid-template-columns:1fr}
   .rev-grid.collapsed .rev-extra{display:none}
   .rev-grid.collapsed .rev-more{display:block}
+  .tail-grid{grid-template-columns:1fr;gap:32px}
+  .tailcard{padding:32px 18px}
+  .tailplay{width:100%;max-width:280px;padding:0 12px}
+  .say{padding:7px 14px 7px 8px}
+  .say .say-zh{font-size:15px}
   .inset{padding:24px}
   .inset form{flex-direction:column}
   .inset .ml-block-form{flex-direction:column}
@@ -237,17 +286,22 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
   <div class="container">
     <div class="hero-grid">
       <div>
-        <div class="eyebrow">China travel Mandarin · Nanjing, China</div>
-        <h1>Learn Chinese you'll actually use — without the fear of speaking.</h1>
-        <p class="sub">I'm Joy — certified teacher, Chinese Literature degree, and the voice inside the China Survival Kit app. Start with practical phrases for China travel, then book a lesson when you want personal help.</p>
+        <div class="eyebrow">Going to China · zero Mandarin needed</div>
+        <h1>China, with a real voice in your pocket.</h1>
+        <p class="sub">I'm Joy — a certified Mandarin teacher from Nanjing. I recorded all 234 phrases in the China Survival Kit, so your phone can speak for you.</p>
+        <p class="say-cap">Tap one — this is my actual voice:</p>
+        <div class="say-row">
+          <button class="say" data-clip="audio/q1.m4a" type="button"><span class="tri"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span><span class="say-zh" lang="zh">我不会说中文</span><span class="say-en">I don't speak Chinese</span></span></button>
+          <button class="say" data-clip="audio/b4.m4a" type="button"><span class="tri"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span><span class="say-zh" lang="zh">请问，厕所在哪里？</span><span class="say-en">Where's the toilet?</span></span></button>
+          <button class="say" data-clip="audio/addr1.m4a" type="button"><span class="tri"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span><span class="say-zh" lang="zh">请送我到这个地址</span><span class="say-en">Take me to this address</span></span></button>
+        </div>
         <div class="btnrow">
-          <a class="btn btn-jade" id="heroCta" href="#app">See how the app works</a>
-          <a class="textlink" href="#cheatsheet">Get the free cheat-sheet →</a>
-          <a class="textlink" href="https://preply.com/en/tutor/7785901" target="_blank" rel="noopener">Book a lesson with Joy</a>
+          <a class="btn btn-jade" id="heroCta" href="#app">See the app</a>
+          <a class="textlink" href="#cheatsheet">Get the free 30-phrase pack →</a>
         </div>
       </div>
       <div class="photo" id="ph1">
-        <img src="joy.jpg" alt="Joy — Mandarin teacher" onerror="document.getElementById('ph1').classList.add('nophoto')">
+        <img src="joy-960.jpg" width="960" height="955" fetchpriority="high" alt="Joy — Mandarin teacher" onerror="document.getElementById('ph1').classList.add('nophoto')">
         <div class="fallback"><span class="zi">雨洁</span><small>photo: joy.jpg</small></div>
         <div class="bubble">你好，我是雨洁 <small>— Hi, I'm Joy.</small></div>
       </div>
@@ -270,20 +324,47 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
           <li>Emergency essentials free, forever</li>
         </ul>
         <a class="store-badge" href="https://apps.apple.com/app/china-survival-kit/id6785204473" target="_blank" rel="noopener">Download on the App Store</a>
+        <p class="caption" style="margin-top:16px;color:rgba(245,245,247,.6)">No iPhone? <a href="#cheatsheet" style="color:var(--jade-lift)">The free 30-phrase audio pack</a> works on anything.</p>
       </div>
       <div>
-        <div class="phone" aria-hidden="true">
+        <div class="phone">
           <div class="screen">
+            <button class="p-play" data-clip="audio/q8.m4a" type="button"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Hear Joy ask it</button>
             <div class="p-en">Do you speak English?</div>
             <div class="p-zh" lang="zh">你会说英语吗？</div>
             <div class="p-py">Nǐ huì shuō Yīngyǔ ma?</div>
-            <div class="chips">
-              <span class="chip" lang="zh">会<small>Yes</small></span>
-              <span class="chip on" lang="zh">会一点<small>A little</small></span>
-              <span class="chip" lang="zh">不会<small>No</small></span>
+            <div class="p-hint">Their turn — they tap a reply</div>
+            <div class="chips" id="demoChips">
+              <button class="chip" data-ans="Yes" type="button"><span lang="zh">会</span><small>Yes</small></button>
+              <button class="chip" data-ans="A little" type="button"><span lang="zh">会一点</span><small>A little</small></button>
+              <button class="chip" data-ans="No" type="button"><span lang="zh">不会</span><small>No</small></button>
             </div>
+            <div class="p-flip" id="demoFlip" aria-live="polite"></div>
           </div>
         </div>
+        <p class="demo-cap">A real screen from the app — go on, tap a reply.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2b · DIDI TAIL-NUMBER TOY — white -->
+<section id="tailnum">
+  <div class="container">
+    <div class="tail-grid">
+      <div>
+        <div class="eyebrow">Try the app's party trick</div>
+        <h2>Your Didi driver will ask for "the last four digits."</h2>
+        <p class="sub">Ride-hailing drivers in China confirm passengers by the last 4 digits of your phone number — the #1 moment travelers freeze. The app shows yours huge, and says it the Chinese way (1 is read <i lang="zh">幺</i> "yāo", not "yī" — a detail most apps get wrong).</p>
+        <p class="caption">Type any 4 digits. Nothing is stored or sent — it runs entirely on this page.</p>
+      </div>
+      <div class="tailcard">
+        <label for="tailIn">Last 4 digits of your number</label>
+        <input class="tailin" id="tailIn" inputmode="numeric" autocomplete="off" value="6472" aria-describedby="tailZh">
+        <div class="tail-digits" id="tailDigits">6&thinsp;4&thinsp;7&thinsp;2</div>
+        <div class="tail-zh" id="tailZh" lang="zh">尾号 六四七二</div>
+        <div class="tail-py" id="tailPy">wěihào liù sì qī èr</div>
+        <button class="btn btn-jade tailplay" id="tailPlay" type="button">▶&nbsp; Hear it in Joy's voice</button>
       </div>
     </div>
   </div>
@@ -337,6 +418,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
   <div class="container">
     <div class="eyebrow">Student reviews</div>
     <h2>What students say after class</h2>
+    <p class="caption" style="margin-top:-8px">From her <a href="https://preply.com/en/tutor/7785901" target="_blank" rel="noopener">verified Preply profile</a> — read them all there.</p>
     <div class="rev-grid" id="revGrid">
       <article class="rev"><span class="qm">“</span><p>In a lifetime of language classes, lessons with Yujie are honestly the most engaging, fun — and equally challenging and productive — I've ever had. Time flies.</p><footer><b>Benjamin</b> <span>· long-term student</span></footer></article>
       <article class="rev"><span class="qm">“</span><p>When I asked her to tailor lessons to my specific needs — translating legal terminology for work — she did it brilliantly. I couldn't recommend her more highly.</p><footer><b>Hannah</b> <span>· business Chinese</span></footer></article>
@@ -355,7 +437,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
     <div class="inset">
       <div class="eyebrow">Free download</div>
       <h2>The 30 phrases that will save your China trip.</h2>
-      <p class="caption">Big Chinese, pinyin, and when to use each one — straight from the app, free in your inbox.</p>
+      <p class="caption">Big Chinese, pinyin, and all 30 recordings in Joy's real voice — straight from the app, free in your inbox. Works on any phone.</p>
       <!-- REPLACE-FORM: paste the MailerLite embed here and delete this placeholder form -->
       <!-- MailerLite form 43439270, restyled: ML's JS handles submit/validation/success;
            our classes handle every pixel. Do not rename ml-* classes — the script needs them. -->
@@ -402,7 +484,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
   <div class="container">
     <div class="about-grid">
       <div class="photo tall" id="ph2">
-        <img src="joy-travel.jpg" alt="Joy travelling in Indonesia" onerror="document.getElementById('ph2').classList.add('nophoto')">
+        <img src="joy-travel-960.jpg" width="719" height="960" loading="lazy" alt="Joy travelling in Indonesia" onerror="document.getElementById('ph2').classList.add('nophoto')">
         <div class="fallback"><span class="zi">南京</span><small>photo: joy-travel.jpg</small></div>
       </div>
       <div class="prose">
@@ -443,6 +525,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
         <a href="https://www.tiktok.com/@learnchinesewithjoy" target="_blank" rel="noopener">TikTok</a>
         <a href="https://www.instagram.com/learnmandarinwithjoy/" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.youtube.com/@LearnChineseWithJoy" target="_blank" rel="noopener">YouTube</a>
+        <a href="privacy.html">Privacy</a>
       </nav>
       <span class="made">Made in Nanjing <span lang="zh">南京</span></span>
     </div>
@@ -480,6 +563,65 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
       upd();
     });
     endObs.observe(fin); endObs.observe(foot);
+  }
+
+  /* ---- sound: one player for the whole page — Joy's real recordings ---- */
+  var curA=null,curBtn=null;
+  function stopA(){ if(curA){curA.pause();curA=null;} if(curBtn){curBtn.classList.remove('on');curBtn=null;} }
+  function playClip(src,btn,onEnd){
+    stopA();
+    var a=new Audio(src);curA=a;curBtn=btn||null;if(btn)btn.classList.add('on');
+    a.addEventListener('ended',function(){ if(curA===a){stopA(); if(onEnd)onEnd();} });
+    /* pause()ing a clip whose play() is still pending rejects that promise —
+       only tear down if WE are still the current clip, or a rapid second tap
+       (or a 404 in flight) silences the newly started one. */
+    a.play().catch(function(){ if(curA===a)stopA(); });
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-clip]');if(!b)return;
+    if(curBtn===b){stopA();return;}
+    playClip(b.dataset.clip,b);
+  });
+  /* any [data-clip] whose file isn't published yet hides itself — no dead buttons */
+  document.querySelectorAll('[data-clip]').forEach(function(b){
+    var p=new Audio(); p.addEventListener('error',function(){b.style.display='none';});
+    p.preload='metadata'; p.src=b.dataset.clip;
+  });
+
+  /* ---- live phone demo: they tap a reply, you read it in English ---- */
+  var chips=document.getElementById('demoChips'),flip=document.getElementById('demoFlip');
+  if(chips)chips.addEventListener('click',function(e){
+    var c=e.target.closest('.chip');if(!c)return;
+    chips.querySelectorAll('.chip').forEach(function(x){x.classList.toggle('on',x===c);});
+    flip.innerHTML='✓ They answered: <b>'+c.dataset.ans+'</b> · '+c.querySelector('[lang]').textContent;
+  });
+
+  /* ---- Didi tail-number toy — runs entirely client-side ---- */
+  var TCN='零幺二三四五六七八九',TPY=['líng','yāo','èr','sān','sì','wǔ','liù','qī','bā','jiǔ'];
+  var tin=document.getElementById('tailIn');
+  if(tin){
+    var td=document.getElementById('tailDigits'),tz=document.getElementById('tailZh'),
+        tp=document.getElementById('tailPy'),tb=document.getElementById('tailPlay');
+    var probe=new Audio('audio/tnintro.m4a'); /* clips not published yet? hide the button */
+    probe.addEventListener('error',function(){tb.style.display='none';});
+    /* LAST 4 digits — so pasting a whole phone number does the right thing */
+    function d4(){ return (tin.value||'').replace(/\D/g,'').slice(-4); }
+    function sync(){
+      var d=d4(), v=d||'6472';
+      if(tin.value!==d)tin.value=d; /* normalize to digits — but never force the fallback into the field */
+      td.innerHTML=v.split('').join('&thinsp;');
+      tz.textContent='尾号 '+v.split('').map(function(n){return TCN[+n];}).join('');
+      tp.textContent='wěihào '+v.split('').map(function(n){return TPY[+n];}).join(' ');
+    }
+    tin.addEventListener('input',sync);
+    tb.addEventListener('click',function(){
+      var v=d4()||'6472', ids=['tnintro'].concat(v.split('').map(function(n){return 'tnd'+n;})), i=0;
+      (function next(){
+        if(i>=ids.length)return;
+        playClip('audio/'+ids[i++]+'.m4a',tb,next);
+      })();
+    });
+    sync();
   }
 })();
 </script>
