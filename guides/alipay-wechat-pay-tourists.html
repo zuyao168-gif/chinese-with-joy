@@ -64,7 +64,9 @@ a{color:var(--jade)}
 .rel b{display:block;margin-bottom:8px;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:var(--graphite)}
 .rel a{display:block;padding:6px 0;font-weight:600;text-decoration:none}
 footer.ft{margin-top:40px;padding-top:18px;border-top:1px solid var(--hairline);font-size:13px;color:var(--graphite)}
-footer.ft a{color:var(--jade)}</style>
+footer.ft a{color:var(--jade)}
+.topcta{margin-top:16px}
+.topcta .btn{display:inline-flex;align-items:center;height:46px;padding:0 24px;border-radius:999px;font-size:15.5px;font-weight:600;text-decoration:none}</style>
 </head>
 <body>
 <div class="wrap">
@@ -73,6 +75,7 @@ footer.ft a{color:var(--jade)}</style>
   <div class="eyebrow">Money &amp; payments</div>
   <h1>Alipay &amp; WeChat Pay for Tourists: Set Up Before You Fly</h1>
   <div class="by"><b>By Joy (雨洁)</b> — certified Chinese teacher from Nanjing, the voice of the <a href="https://apps.apple.com/app/china-survival-kit/id6785204473">China Survival Kit</a> app. Last checked July 2026.</div>
+  <div class="topcta"><a class="btn jade cta-app" href="https://apps.apple.com/app/china-survival-kit/id6785204473">Get the app — core scenarios free →</a></div>
 </header>
 <section>
 <h2>Chinese cities run on phones, not wallets</h2>
@@ -92,7 +95,7 @@ footer.ft a{color:var(--jade)}</style>
 <li><b>Tell your bank you are traveling.</b> A fraud block from your home bank is the single most common reason a payment fails in China.</li>
 </ul>
 </section>
-<div class="cta"><h2>Put a real Chinese voice in your pocket</h2><p>Every phrase on this page — and 200+ more — lives in the China Survival Kit app: tap to show it big, play it in teacher Joy's real voice, and let locals tap their answer back. Works 100% offline.</p><a class="btn jade" href="https://apps.apple.com/app/china-survival-kit/id6785204473">Get the app</a><a class="btn ghost" href="/guide.html">Free 30-phrase audio guide</a></div>
+<div class="cta"><h2>Put a real Chinese voice in your pocket</h2><p>Every phrase on this page — and 200+ more — lives in the China Survival Kit app: tap to show it big, play it in teacher Joy's real voice, and let locals tap their answer back. Works 100% offline.</p><a class="btn jade cta-app" href="https://apps.apple.com/app/china-survival-kit/id6785204473">Get the app</a><a class="btn ghost" href="/guide.html">Free China Trip Prep Pack</a></div>
 <section>
 <h2>The two directions of the QR code</h2>
 <p>Every mobile payment in China goes one of two ways. Knowing which is which removes most of the checkout confusion.</p>
@@ -138,7 +141,7 @@ footer.ft a{color:var(--jade)}</style>
 <details><summary>Can I still pay with cash in China?</summary><p>Yes, cash is legal tender, but small vendors may be slow to make change. Carry a modest amount in small notes as a backup for markets, dead batteries, and rejected cards.</p></details>
 <details><summary>What do I do if my payment fails at checkout in China?</summary><p>Try the other app first, then a smaller amount, then check your banking app for a fraud alert. If nothing works, pay cash and fix the card later on Wi-Fi.</p></details>
 </section>
-<div class="cta"><h2>Put a real Chinese voice in your pocket</h2><p>Every phrase on this page — and 200+ more — lives in the China Survival Kit app: tap to show it big, play it in teacher Joy's real voice, and let locals tap their answer back. Works 100% offline.</p><a class="btn jade" href="https://apps.apple.com/app/china-survival-kit/id6785204473">Get the app</a><a class="btn ghost" href="/guide.html">Free 30-phrase audio guide</a></div>
+<div class="cta"><h2>Put a real Chinese voice in your pocket</h2><p>Every phrase on this page — and 200+ more — lives in the China Survival Kit app: tap to show it big, play it in teacher Joy's real voice, and let locals tap their answer back. Works 100% offline.</p><a class="btn jade cta-app" href="https://apps.apple.com/app/china-survival-kit/id6785204473">Get the app</a><a class="btn ghost" href="/guide.html">Free China Trip Prep Pack</a></div>
 <div class="rel"><b>Keep reading</b>
 <a href="/guides/didi-taxi-china.html">How to Use Didi in China Without Speaking a Word</a>
 <a href="/guides/ordering-food-china.html">Order Food in China Without Speaking a Word</a>
@@ -146,5 +149,6 @@ footer.ft a{color:var(--jade)}</style>
 </div>
 <footer class="ft">Written by a human, checked by a native speaker. · <a href="/">chinesewithjoy.net</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></footer>
 </div>
+<script>if(/Android/i.test(navigator.userAgent)){document.querySelectorAll('a.cta-app').forEach(function(el){el.textContent='No iPhone? Get the free audio pack \u2192';el.href='/guide.html';});}</script>
 </body>
 </html>

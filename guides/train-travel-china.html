@@ -64,7 +64,9 @@ a{color:var(--jade)}
 .rel b{display:block;margin-bottom:8px;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:var(--graphite)}
 .rel a{display:block;padding:6px 0;font-weight:600;text-decoration:none}
 footer.ft{margin-top:40px;padding-top:18px;border-top:1px solid var(--hairline);font-size:13px;color:var(--graphite)}
-footer.ft a{color:var(--jade)}</style>
+footer.ft a{color:var(--jade)}
+.topcta{margin-top:16px}
+.topcta .btn{display:inline-flex;align-items:center;height:46px;padding:0 24px;border-radius:999px;font-size:15.5px;font-weight:600;text-decoration:none}</style>
 </head>
 <body>
 <div class="wrap">
@@ -73,6 +75,7 @@ footer.ft a{color:var(--jade)}</style>
   <div class="eyebrow">Getting around</div>
   <h1>China's High-Speed Rail: Your Passport Is the Ticket</h1>
   <div class="by"><b>By Joy (雨洁)</b> — certified Chinese teacher from Nanjing, the voice of the <a href="https://apps.apple.com/app/china-survival-kit/id6785204473">China Survival Kit</a> app. Last checked July 2026.</div>
+  <div class="topcta"><a class="btn jade cta-app" href="https://apps.apple.com/app/china-survival-kit/id6785204473">Get the app — core scenarios free →</a></div>
 </header>
 <section>
 <h2>How booking actually works</h2>
@@ -86,7 +89,7 @@ footer.ft a{color:var(--jade)}</style>
 <p>There is no paper ticket to print or collect. Your booking lives in the railway system, tied to your passport number. At most major stations the automatic boarding gates read Chinese ID cards, so as a foreigner you'll usually go through a staffed lane where an attendant scans or checks your passport. Setups vary by station, but the passport is always what gets you through.</p>
 <p>Screenshot your booking confirmation showing the train number, date, seat, and departure station. If an app logs you out or your battery dips, the screenshot plus your passport is enough for staff to sort you out.</p>
 </section>
-<div class="cta"><h2>Put a real Chinese voice in your pocket</h2><p>Every phrase on this page — and 200+ more — lives in the China Survival Kit app: tap to show it big, play it in teacher Joy's real voice, and let locals tap their answer back. Works 100% offline.</p><a class="btn jade" href="https://apps.apple.com/app/china-survival-kit/id6785204473">Get the app</a><a class="btn ghost" href="/guide.html">Free 30-phrase audio guide</a></div>
+<div class="cta"><h2>Put a real Chinese voice in your pocket</h2><p>Every phrase on this page — and 200+ more — lives in the China Survival Kit app: tap to show it big, play it in teacher Joy's real voice, and let locals tap their answer back. Works 100% offline.</p><a class="btn jade cta-app" href="https://apps.apple.com/app/china-survival-kit/id6785204473">Get the app</a><a class="btn ghost" href="/guide.html">Free China Trip Prep Pack</a></div>
 <section>
 <h2>Arrive 45–60 minutes early — the station is an airport</h2>
 <p>A big-city Chinese railway station is the size of an airport terminal and runs like one. You pass an ID check and a security screening just to enter the building: passport out, bags through an X-ray. Then you find your train number on the departure boards, which list the check-in gate for each train.</p>
@@ -121,7 +124,7 @@ footer.ft a{color:var(--jade)}</style>
 <details><summary>Is there food on Chinese high-speed trains?</summary><p>Yes — a snack trolley, free hot-water dispensers in every car, and on some routes a dining car or seat delivery ordered through 12306. Bringing your own food is completely normal.</p></details>
 <details><summary>What is the difference between first and second class on Chinese trains?</summary><p>Second class has five seats per row and is comfortable for a few hours. First class has four seats per row with more recline. Business class is the premium option with wide reclining seats, often priced close to airfare.</p></details>
 </section>
-<div class="cta"><h2>Put a real Chinese voice in your pocket</h2><p>Every phrase on this page — and 200+ more — lives in the China Survival Kit app: tap to show it big, play it in teacher Joy's real voice, and let locals tap their answer back. Works 100% offline.</p><a class="btn jade" href="https://apps.apple.com/app/china-survival-kit/id6785204473">Get the app</a><a class="btn ghost" href="/guide.html">Free 30-phrase audio guide</a></div>
+<div class="cta"><h2>Put a real Chinese voice in your pocket</h2><p>Every phrase on this page — and 200+ more — lives in the China Survival Kit app: tap to show it big, play it in teacher Joy's real voice, and let locals tap their answer back. Works 100% offline.</p><a class="btn jade cta-app" href="https://apps.apple.com/app/china-survival-kit/id6785204473">Get the app</a><a class="btn ghost" href="/guide.html">Free China Trip Prep Pack</a></div>
 <div class="rel"><b>Keep reading</b>
 <a href="/guides/china-visa-free-transit.html">Visa-Free Transit in China: What It Actually Means</a>
 <a href="/guides/booking-attractions-china.html">Booking China's Big Sights With a Foreign Passport</a>
@@ -129,5 +132,6 @@ footer.ft a{color:var(--jade)}</style>
 </div>
 <footer class="ft">Written by a human, checked by a native speaker. · <a href="/">chinesewithjoy.net</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></footer>
 </div>
+<script>if(/Android/i.test(navigator.userAgent)){document.querySelectorAll('a.cta-app').forEach(function(el){el.textContent='No iPhone? Get the free audio pack \u2192';el.href='/guide.html';});}</script>
 </body>
 </html>
