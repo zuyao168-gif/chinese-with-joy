@@ -63,6 +63,12 @@ footer.ft{margin-top:40px;padding-top:18px;border-top:1px solid var(--hairline);
 footer.ft a{color:var(--jade)}
 .topcta{margin-top:16px}
 .topcta .btn{display:inline-flex;align-items:center;height:46px;padding:0 24px;border-radius:999px;font-size:15.5px;font-weight:600;text-decoration:none}
+.ph{position:relative}
+.pl{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:none;background:var(--jade);color:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pl:active{transform:scale(.96)}
+.answer{background:var(--whisper);border-left:4px solid var(--jade);border-radius:0 12px 12px 0;padding:16px 18px;margin:6px 0 10px;font-size:16.5px;line-height:1.5}
+.gonext{display:flex;flex-direction:column;gap:6px;background:var(--rice,#F5F5F7);border-radius:12px;padding:14px 16px;margin:18px 0;font-size:15px}
+.gonext a{font-weight:600}
 .card{display:block;padding:18px;border:1px solid var(--hairline);border-radius:14px;margin:12px 0;text-decoration:none}
 .card b{display:block;color:var(--ink);font-size:17px;margin-bottom:4px}
 .card span{font-size:14px;color:var(--graphite)}
@@ -85,7 +91,7 @@ footer.ft a{color:var(--jade)}
 <a class="card" href="/guides/airport-arrival-china.html"><b>Your First Two Hours After Landing in China</b><span>Arriving in China tips for your first two hours: airport immigration flow, SIM and cash decisions, avoiding terminal touts, and one phrase officials need to hear.</span></a>
 <a class="card" href="/guides/ordering-food-china.html"><b>Order Food in China Without Speaking a Word</b><span>Ordering food in China without Chinese: how QR menus work, pointing at dishes, the spice ladder, allergy phrases in writing, and paying at the table.</span></a>
 <a class="card" href="/guides/esim-internet-china.html"><b>Internet in China: eSIM First, Offline Always</b><span>How to get internet in China as a tourist: eSIM before departure vs airport SIM counter, hotel wifi reality, and the offline downloads to do before you fly.</span></a>
-<a class="card" href="/guides/emergency-numbers-china.html"><b>Emergencies in China: 120, 110, 119 — and What to Say</b><span>China's emergency numbers are 120 (ambulance), 110 (police), and 119 (fire). What to dial, how hospitals work for foreigners, and the Mandarin phrases to use.</span></a>
+<a class="card" href="/guides/emergency-numbers-china.html"><b>Can You Call 911 in China? The Numbers That Actually Work</b><span>911 doesn't work in China. Dial 110 for police, 120 for ambulance, 119 for fire, 122 for traffic accidents — all free. What to say in Mandarin, with a real teacher's audio.</span></a>
 <a class="card" href="/guides/tourist-scams-china.html"><b>Tourist scams in China: six classics, one playbook</b><span>The six tourist scams you'll actually meet in China — the tea ceremony scam, black cabs, rigged bar bills — and the exact Mandarin that shuts each one down.</span></a>
 <a class="card" href="/guides/train-travel-china.html"><b>China's High-Speed Rail: Your Passport Is the Ticket</b><span>How China's high-speed rail works for foreigners: booking train tickets with your passport, station security, seat classes, and what to expect on board.</span></a>
 <a class="card" href="/guides/taxi-phrases-chinese.html"><b>Taxi Chinese: 12 lines that get you anywhere</b><span>The 12 taxi and Didi Chinese phrases you actually need — meter, address card, pickup call, paying — with pinyin, and Joy's real voice in the free guide and app.</span></a>
@@ -97,5 +103,15 @@ footer.ft a{color:var(--jade)}
 <footer class="ft"><a href="/">chinesewithjoy.net</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></footer>
 </div>
 <script>if(/Android/i.test(navigator.userAgent)){document.querySelectorAll('a.cta-app').forEach(function(el){el.textContent='No iPhone? Get the free audio pack \u2192';el.href='/guide.html';});}</script>
+<script>
+(function(){var cur=null,curBtn=null;
+document.addEventListener('click',function(ev){var b=ev.target.closest('.pl');if(!b)return;
+var id=b.getAttribute('data-a');
+if(curBtn===b&&cur){cur.pause();cur=null;curBtn.textContent='\u25B6';curBtn=null;return;}
+if(cur){cur.pause();if(curBtn)curBtn.textContent='\u25B6';}
+cur=new Audio('/audio/'+id+'.m4a');curBtn=b;b.textContent='\u25A0';
+cur.onended=cur.onerror=function(){b.textContent='\u25B6';cur=null;curBtn=null;};
+cur.play().catch(function(){b.textContent='\u25B6';});});})();
+</script>
 </body>
 </html>

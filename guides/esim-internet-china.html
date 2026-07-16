@@ -66,7 +66,13 @@ a{color:var(--jade)}
 footer.ft{margin-top:40px;padding-top:18px;border-top:1px solid var(--hairline);font-size:13px;color:var(--graphite)}
 footer.ft a{color:var(--jade)}
 .topcta{margin-top:16px}
-.topcta .btn{display:inline-flex;align-items:center;height:46px;padding:0 24px;border-radius:999px;font-size:15.5px;font-weight:600;text-decoration:none}</style>
+.topcta .btn{display:inline-flex;align-items:center;height:46px;padding:0 24px;border-radius:999px;font-size:15.5px;font-weight:600;text-decoration:none}
+.ph{position:relative}
+.pl{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:none;background:var(--jade);color:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pl:active{transform:scale(.96)}
+.answer{background:var(--whisper);border-left:4px solid var(--jade);border-radius:0 12px 12px 0;padding:16px 18px;margin:6px 0 10px;font-size:16.5px;line-height:1.5}
+.gonext{display:flex;flex-direction:column;gap:6px;background:var(--rice,#F5F5F7);border-radius:12px;padding:14px 16px;margin:18px 0;font-size:15px}
+.gonext a{font-weight:600}</style>
 </head>
 <body>
 <div class="wrap">
@@ -142,5 +148,15 @@ footer.ft a{color:var(--jade)}
 <footer class="ft">Written by a human, checked by a native speaker. · <a href="/">chinesewithjoy.net</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></footer>
 </div>
 <script>if(/Android/i.test(navigator.userAgent)){document.querySelectorAll('a.cta-app').forEach(function(el){el.textContent='No iPhone? Get the free audio pack \u2192';el.href='/guide.html';});}</script>
+<script>
+(function(){var cur=null,curBtn=null;
+document.addEventListener('click',function(ev){var b=ev.target.closest('.pl');if(!b)return;
+var id=b.getAttribute('data-a');
+if(curBtn===b&&cur){cur.pause();cur=null;curBtn.textContent='\u25B6';curBtn=null;return;}
+if(cur){cur.pause();if(curBtn)curBtn.textContent='\u25B6';}
+cur=new Audio('/audio/'+id+'.m4a');curBtn=b;b.textContent='\u25A0';
+cur.onended=cur.onerror=function(){b.textContent='\u25B6';cur=null;curBtn=null;};
+cur.play().catch(function(){b.textContent='\u25B6';});});})();
+</script>
 </body>
 </html>
