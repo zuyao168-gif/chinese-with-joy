@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0E7B5C">
+<title>Free Chinese Allergy Card Generator (Printable) — Made by a Mandarin Teacher</title>
+<meta name="description" content="Build a Chinese allergy card in 30 seconds: pick your allergens, get correct Chinese to show any waiter — with severity levels, cross-contamination wording and a 120 emergency line. Free, printable, no signup.">
+<link rel="canonical" href="https://chinesewithjoy.net/chinese-allergy-card-generator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Chinese Allergy Card Generator (Printable)">
+<meta property="og:description" content="Pick your allergens, show the card in Chinese. Teacher-verified wording, severity levels, print or save as PNG. Free.">
+<meta property="og:url" content="https://chinesewithjoy.net/chinese-allergy-card-generator/">
+<meta property="og:image" content="https://chinesewithjoy.net/joy.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230E7B5C'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23fff' font-family='PingFang SC,serif'%3E%E4%B8%AD%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Who translated this allergy card?","acceptedAnswer":{"@type":"Answer","text":"The Chinese wording was written and verified by Joy (雨洁), a certified Mandarin teacher from Nanjing who preps travelers for China trips. It uses the standard phrasing Chinese restaurants and hospitals recognize."}},
+{"@type":"Question","name":"Can I use the allergy card offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. Save it as a PNG to your camera roll or print it — no internet needed at the restaurant. For a version with real audio and tap-to-answer buttons that works fully offline, the China Survival Kit app includes an allergy card that rebuilds this text automatically."}},
+{"@type":"Question","name":"Does it cover cross-contamination?","acceptedAnswer":{"@type":"Answer","text":"Yes. If you mark an allergen as severe, the card asks the kitchen to avoid shared woks, oil and utensils that touched the allergen (交叉污染) — not just to leave the ingredient out."}},
+{"@type":"Question","name":"Is it really free?","acceptedAnswer":{"@type":"Answer","text":"Completely. No signup, no watermark. It exists because zero-Chinese travelers with allergies are the people who most need correct wording, not a paywall."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://chinesewithjoy.net/"},{"@type":"ListItem","position":2,"name":"Chinese Allergy Card Generator","item":"https://chinesewithjoy.net/chinese-allergy-card-generator/"}]}
+</script>
+<style>
+:root{--ink:#1D1D1F;--graphite:#6E6E73;--paper:#fff;--rice:#F5F5F7;--jade:#0E7B5C;--jadep:#0C6A4F;
+--whisper:#E9F4EF;--cinnabar:#B23A2E;--alert-soft:#F7E9E7;--hairline:#D2D2D7;
+--serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+--zh:'PingFang SC','Hiragino Sans GB','Noto Sans SC','Microsoft YaHei',sans-serif}
+*{box-sizing:border-box;margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto;padding:0 22px 60px}
+.crumb{padding:18px 0 0;font-size:13px;color:var(--graphite)}
+.crumb a{color:var(--jade);text-decoration:none}
+header.hd{padding:26px 0 22px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--jade);margin-bottom:12px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,6vw,40px);line-height:1.12;text-wrap:balance}
+.by{margin-top:12px;font-size:14px;color:var(--graphite)}
+.by b{color:var(--ink)}
+h2{font-family:var(--serif);font-weight:400;font-size:24px;margin:26px 0 10px}
+p{margin:10px 0;color:#3a3d3a}
+a{color:var(--jade)}
+.step{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--jade);margin:26px 0 8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+.al{border:1.5px solid var(--hairline);border-radius:14px;padding:12px 14px;cursor:pointer;user-select:none}
+.al .nm{font-weight:600;font-size:15.5px}
+.al .zh{font-family:var(--zh);color:var(--graphite);font-size:14px}
+.al.on{border-color:var(--jade);background:var(--whisper)}
+.sev{display:none;gap:6px;margin-top:10px;flex-wrap:wrap}
+.al.on .sev{display:flex}
+.sev button{border:1px solid var(--hairline);background:#fff;border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:600;cursor:pointer;color:var(--graphite)}
+.sev button.sel{background:var(--jade);border-color:var(--jade);color:#fff}
+.sev button.sel.sevr{background:var(--cinnabar);border-color:var(--cinnabar)}
+#card{background:#fff;border:2px solid var(--ink);border-radius:18px;padding:26px 24px;margin:14px 0}
+#card .cap{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--graphite);margin-bottom:14px}
+#card .blk{margin:0 0 18px}
+#card .czh{font-family:var(--zh);font-size:30px;font-weight:700;line-height:1.45}
+#card .czh.cr{color:var(--cinnabar)}
+#card .cen{font-size:14px;color:var(--graphite);margin-top:6px}
+#card .emg{border-top:1.5px dashed var(--hairline);padding-top:14px;margin-top:4px}
+#card .emg .czh{font-size:24px}
+#card .ft{margin-top:16px;font-size:11.5px;color:var(--graphite)}
+#empty{color:var(--graphite);background:var(--rice);border-radius:14px;padding:18px;font-size:15px}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 22px;border-radius:999px;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;border:none}
+.btn.jade{background:var(--jade);color:#fff}
+.btn.ghost{background:#fff;border:1.5px solid var(--hairline);color:var(--ink)}
+.cta{background:var(--rice);border-radius:18px;padding:24px;margin:30px 0}
+.cta h2{margin:0 0 6px;font-size:22px}
+.cta p{font-size:14.5px;color:var(--graphite)}
+.ph{position:relative;display:flex;gap:14px;padding:14px 16px;margin:12px 0;background:#fff;border:1px solid var(--hairline);border-radius:12px}
+.ph .en{font-size:13px;color:var(--graphite)}
+.ph .zh{font-family:var(--zh);font-size:20px;font-weight:600}
+.pl{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:none;background:var(--jade);color:#fff;font-size:14px;cursor:pointer}
+.faq details{border-bottom:1px dashed var(--hairline);padding:12px 0}
+.faq summary{font-weight:600;cursor:pointer}
+.faq p{font-size:15px}
+footer.sft{margin-top:40px;padding-top:18px;border-top:1px solid var(--hairline);font-size:13px;color:var(--graphite)}
+@media print{
+  body *{visibility:hidden}
+  #card,#card *{visibility:visible}
+  #card{position:absolute;left:0;top:0;width:100%;border:2px solid #000;border-radius:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="crumb"><a href="/">chinesewithjoy.net</a> › Allergy card generator</div>
+<header class="hd">
+  <div class="eyebrow">Free tool · no signup</div>
+  <h1>Chinese Allergy Card Generator</h1>
+  <div class="by"><b>Teacher-verified wording.</b> Pick your allergens, choose how serious each one is, and show the card to any waiter in China. Print it, save it as an image, or keep it on your phone. Made by Joy (雨洁), a certified Mandarin teacher — the same wording her own students carry.</div>
+</header>
+
+<div class="step">Step 1 · Tap everything that applies</div>
+<div class="grid" id="allergens"></div>
+
+<div class="step">Step 2 · Your card (updates live)</div>
+<div id="empty">Nothing selected yet — tap an allergen above and your card appears here, in correct Chinese.</div>
+<div id="card" hidden>
+  <div class="cap">Food allergy card · 食物过敏卡 · please read 请阅读</div>
+  <div id="cardBody"></div>
+  <div class="ft">Generated at chinesewithjoy.net · wording by Joy 雨洁, certified Mandarin teacher</div>
+</div>
+<div class="btnrow" id="actions" hidden>
+  <button class="btn jade" id="dl">Save as image (PNG)</button>
+  <button class="btn ghost" onclick="window.print()">Print</button>
+</div>
+
+<div class="cta">
+  <h2>Hear it in a real teacher's voice</h2>
+  <p>This card is silent. In the <b>China Survival Kit</b> app, your allergy phrase rebuilds itself from your Emergency Card and speaks in Joy's real recorded voice — plus 400+ travel phrases, all working 100% offline. Core scenarios are free.</p>
+  <div class="ph"><div><div class="en">Not spicy, please.</div><div class="zh" lang="zh">不要辣。</div></div><button class="pl" data-a="r3" aria-label="Play">▶</button></div>
+  <div class="ph"><div><div class="en">Please call an ambulance (120).</div><div class="zh" lang="zh">请帮我打 120 叫救护车。</div></div><button class="pl" data-a="e2" aria-label="Play">▶</button></div>
+  <a class="btn jade cta-app" data-ct="web-tool-allergy" href="https://apps.apple.com/app/china-survival-kit/id6785204473">Get the app — free to start</a>
+  <a class="btn ghost" href="/guide.html">Free China Trip Prep Pack</a>
+</div>
+
+<h2>Quick answers</h2>
+<div class="faq">
+<details><summary>Who translated this?</summary><p>Joy (雨洁), a certified Mandarin teacher from Nanjing who preps travelers for China trips. The card uses standard wording that restaurant staff and hospitals recognize immediately.</p></details>
+<details><summary>Can I use it offline?</summary><p>Yes — save the PNG to your camera roll or print it. Nothing on this page phones home. For an offline version with real audio and tap-to-answer buttons, see the app above.</p></details>
+<details><summary>Does it cover cross-contamination?</summary><p>Yes. Mark an allergen as <b>severe</b> and the card explicitly asks the kitchen to avoid shared woks, oil and utensils (交叉污染) — not just to leave the ingredient out.</p></details>
+<details><summary>What should I do in a real reaction?</summary><p>The card carries the line "please call 120 for me" (China's ambulance number). Carry your own epinephrine — Chinese pharmacies won't stock your brand. Read our full <a href="/guides/emergency-numbers-china.html">China emergency numbers guide</a>.</p></details>
+</div>
+
+<footer class="sft"><a href="/">chinesewithjoy.net</a> · <a href="/guides/">Travel guides</a> · <a href="/guides/ordering-food-china.html">Ordering food in China</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a></footer>
+</div>
+
+<script>
+const ALLERGENS=[
+ {id:'peanut',zh:'花生',en:'Peanuts'},
+ {id:'treenut',zh:'坚果',en:'Tree nuts'},
+ {id:'crustacean',zh:'虾蟹 / 甲壳类',en:'Crustaceans / Shellfish'},
+ {id:'fish',zh:'鱼类',en:'Fish'},
+ {id:'egg',zh:'鸡蛋',en:'Eggs'},
+ {id:'milk',zh:'牛奶 / 乳制品',en:'Milk / Dairy'},
+ {id:'soy',zh:'大豆',en:'Soy'},
+ {id:'wheat',zh:'小麦 / 麸质',en:'Wheat / Gluten'},
+ {id:'sesame',zh:'芝麻',en:'Sesame'},
+ {id:'msg',zh:'味精',en:'MSG',pref:1},
+ {id:'cilantro',zh:'香菜',en:'Cilantro / Coriander',pref:1},
+ {id:'spicy',zh:'辣',en:'Spicy food',pref:1}
+];
+const SEV=[['severe','Severe 可致命'],['allergy','Allergy 过敏'],['avoid',"Don't eat 不吃"]];
+const state={};
+const grid=document.getElementById('allergens');
+ALLERGENS.forEach(a=>{
+  const d=document.createElement('div');d.className='al';d.id='al-'+a.id;
+  d.innerHTML='<div class="nm">'+a.en+' <span class="zh" lang="zh">'+a.zh+'</span></div>'+
+   '<div class="sev">'+SEV.map(s=>'<button data-s="'+s[0]+'" class="'+(s[0]==='severe'?'sevr':'')+'">'+s[1]+'</button>').join('')+'</div>';
+  d.addEventListener('click',ev=>{
+    const sb=ev.target.closest('.sev button');
+    if(sb){state[a.id]=sb.dataset.s;paintSel(d);render();ev.stopPropagation();return;}
+    if(state[a.id]){delete state[a.id];d.classList.remove('on');}
+    else{state[a.id]=a.pref?'avoid':'allergy';d.classList.add('on');}
+    paintSel(d);render();
+  });
+  grid.appendChild(d);
+});
+function paintSel(d){
+  const id=d.id.slice(3);
+  d.querySelectorAll('.sev button').forEach(b=>b.classList.toggle('sel',state[id]===b.dataset.s));
+}
+function names(ids,key){return ids.map(i=>ALLERGENS.find(a=>a.id===i)[key]).join(key==='zh'?'、':', ');}
+function render(){
+  const sev=Object.keys(state).filter(k=>state[k]==='severe');
+  const alg=Object.keys(state).filter(k=>state[k]==='allergy');
+  const avd=Object.keys(state).filter(k=>state[k]==='avoid');
+  const card=document.getElementById('card'),empty=document.getElementById('empty'),acts=document.getElementById('actions');
+  const any=sev.length||alg.length||avd.length;
+  card.hidden=!any;acts.hidden=!any;empty.hidden=!!any;
+  if(!any)return;
+  let h='';
+  if(sev.length){h+='<div class="blk"><div class="czh cr" lang="zh">我对'+names(sev,'zh')+'严重过敏，可能危及生命。食物里绝对不能含有这些成分，请不要使用接触过它们的锅具、油和餐具（避免交叉污染）。</div><div class="cen">SEVERE, life-threatening allergy to '+names(sev,'en')+'. The food must contain none of these — please also avoid shared woks, oil and utensils (no cross-contamination).</div></div>';}
+  if(alg.length){h+='<div class="blk"><div class="czh" lang="zh">我对'+names(alg,'zh')+'过敏，请不要放，谢谢。</div><div class="cen">I\'m allergic to '+names(alg,'en')+' — please leave these out.</div></div>';}
+  if(avd.length){h+='<div class="blk"><div class="czh" lang="zh">我不吃'+names(avd,'zh')+'，请不要放，谢谢。</div><div class="cen">I don\'t eat '+names(avd,'en')+' — please leave these out.</div></div>';}
+  if(sev.length){h+='<div class="emg"><div class="czh cr" lang="zh">如出现严重过敏反应，请帮我拨打 120。</div><div class="cen">If I have a severe reaction, please call 120 (ambulance) for me.</div></div>';}
+  document.getElementById('cardBody').innerHTML=h;
+}
+// PNG download (html2canvas from CDN; hide button if it fails to load)
+const dlBtn=document.getElementById('dl');
+const h2c=document.createElement('script');
+h2c.src='https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+h2c.onerror=()=>{dlBtn.style.display='none';};
+document.head.appendChild(h2c);
+dlBtn.addEventListener('click',()=>{
+  if(!window.html2canvas)return;
+  html2canvas(document.getElementById('card'),{scale:3,backgroundColor:'#ffffff'}).then(cv=>{
+    const a=document.createElement('a');a.download='chinese-allergy-card.png';a.href=cv.toDataURL('image/png');a.click();
+  });
+});
+// audio proof players
+(function(){var cur=null,curBtn=null;
+document.addEventListener('click',function(ev){var b=ev.target.closest('.pl');if(!b)return;
+var id=b.getAttribute('data-a');
+if(curBtn===b&&cur){cur.pause();cur=null;curBtn.textContent='▶';curBtn=null;return;}
+if(cur){cur.pause();if(curBtn)curBtn.textContent='▶';}
+cur=new Audio('/audio/'+id+'.m4a');curBtn=b;b.textContent='■';
+cur.onended=cur.onerror=function(){b.textContent='▶';cur=null;curBtn=null;};
+cur.play().catch(function(){b.textContent='▶';});});})();
+// Android CTA swap + attribution shim(与全站一致)
+(function(){var PT='';
+var A=/Android/i.test(navigator.userAgent);
+document.querySelectorAll('a[data-ct]').forEach(function(a){
+  if(A){a.textContent='No iPhone? Get the free audio pack →';a.href='/guide.html';return;}
+  if(PT){a.href='https://apps.apple.com/us/app/china-survival-kit/id6785204473?pt='+PT+'&ct='+a.getAttribute('data-ct')+'&mt=8';}
+});})();
+</script>
+</body>
+</html>
