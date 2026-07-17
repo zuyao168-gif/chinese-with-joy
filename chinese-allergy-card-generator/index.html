@@ -204,11 +204,11 @@ cur=new Audio('/audio/'+id+'.m4a');curBtn=b;b.textContent='■';
 cur.onended=cur.onerror=function(){b.textContent='▶';cur=null;curBtn=null;};
 cur.play().catch(function(){b.textContent='▶';});});})();
 // Android CTA swap + attribution shim(与全站一致)
-(function(){var PT='';
+(function(){var PT='129085871';
 var A=/Android/i.test(navigator.userAgent);
 document.querySelectorAll('a[data-ct]').forEach(function(a){
   if(A){a.textContent='No iPhone? Get the free audio pack →';a.href='/guide.html';return;}
-  if(PT){a.href='https://apps.apple.com/us/app/china-survival-kit/id6785204473?pt='+PT+'&ct='+a.getAttribute('data-ct')+'&mt=8';}
+  if(PT){a.href='https://apps.apple.com/app/apple-store/id6785204473?pt='+PT+'&ct='+a.getAttribute('data-ct')+'&mt=8';}
 });})();
 </script>
 </body>

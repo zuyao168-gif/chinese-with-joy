@@ -854,11 +854,11 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
 </script>
 <script>
 (function(){
-  var PT='';/* ← ASC Provider Token,填入后所有 data-ct 链接自动带归因参数 */
+  var PT='129085871';
   var A=/Android/i.test(navigator.userAgent);
   document.querySelectorAll('a[data-ct]').forEach(function(a){
     if(A&&a.classList.contains('btn')){a.textContent='No iPhone? Get the free audio pack →';a.href='#cheatsheet';a.removeAttribute('target');return;}
-    if(PT){a.href='https://apps.apple.com/us/app/china-survival-kit/id6785204473?pt='+PT+'&ct='+a.getAttribute('data-ct')+'&mt=8';}
+    if(PT){a.href='https://apps.apple.com/app/apple-store/id6785204473?pt='+PT+'&ct='+a.getAttribute('data-ct')+'&mt=8';}
   });
 })();
 </script>
