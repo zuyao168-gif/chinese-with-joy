@@ -342,7 +342,10 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
         </div>
       </div>
       <div class="photo" id="ph1">
-        <img src="joy-960.jpg" width="960" height="955" fetchpriority="high" alt="Joy — Mandarin teacher" onerror="document.getElementById('ph1').classList.add('nophoto')">
+        <picture>
+          <source type="image/webp" srcset="joy-480.webp 480w, joy-680.webp 680w, joy-960.webp 840w" sizes="(max-width:600px) 86vw, 420px">
+          <img src="joy-960.jpg" srcset="joy-480.jpg 480w, joy-680.jpg 680w, joy-960.jpg 840w" sizes="(max-width:600px) 86vw, 420px" width="840" height="835" fetchpriority="high" decoding="async" alt="Joy — Mandarin teacher" onerror="document.getElementById('ph1').classList.add('nophoto')">
+        </picture>
         <div class="fallback"><span class="zi">雨洁</span><small>photo: joy.jpg</small></div>
         <div class="bubble">你好，我是雨洁 <small>— Hi, I'm Joy.</small></div>
       </div>
@@ -548,7 +551,10 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,44px);lin
   <div class="container">
     <div class="about-grid">
       <div class="photo tall" id="ph2">
-        <img src="joy-travel-960.jpg" width="719" height="960" loading="lazy" alt="Joy travelling in Indonesia" onerror="document.getElementById('ph2').classList.add('nophoto')">
+        <picture>
+          <source type="image/webp" srcset="joy-travel-480.webp 400w, joy-travel-960.webp 660w" sizes="(max-width:600px) 92vw, 420px">
+          <img src="joy-travel-960.jpg" srcset="joy-travel-480.jpg 400w, joy-travel-960.jpg 660w" sizes="(max-width:600px) 92vw, 420px" width="660" height="881" loading="lazy" decoding="async" alt="Joy travelling in Indonesia" onerror="document.getElementById('ph2').classList.add('nophoto')">
+        </picture>
         <div class="fallback"><span class="zi">南京</span><small>photo: joy-travel.jpg</small></div>
       </div>
       <div class="prose">
